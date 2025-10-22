@@ -1,8 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1303934444348126');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1303934444348126&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
     <title>Diagnóstico em Comunicação e Oratória</title>
 
     <style>
@@ -85,14 +100,14 @@
         /* --- LOGO HEADER (AJUSTADO) --- */
         .logo-header {
             text-align: center;
-            margin-bottom: 1rem;  /* Reduzido de 2rem */
-            padding-bottom: 1rem; /* Reduzido de 1.5rem */
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
         }
 
         .logo-header img {
-            max-width: 250px; /* Ajuste o tamanho máximo conforme necessário */
+            max-width: 250px;
             height: auto;
-            display: block; /* Para centralizar com margin auto */
+            display: block;
             margin: 0 auto;
         }
 
@@ -313,12 +328,12 @@
             }
             
             .logo-header {
-                padding-top: 1rem; /* Espaçamento no topo em mobile */
-                margin-bottom: 1rem;  /* Reduzido */
-                padding-bottom: 1rem; /* Reduzido */
+                padding-top: 1rem; 
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
             }
             .logo-header img {
-                max-width: 200px; /* Um pouco menor em mobile */
+                max-width: 200px;
             }
 
 
@@ -398,7 +413,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             
             // --- 0. URL DO MAKE.COM ---
-            // !! IMPORTANTE !! Cole aqui a URL do Webhook que o Make.com lhe deu
             const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/SEU-CODIGO-AQUI"; 
             
             
@@ -455,180 +469,4 @@
                 { text: "Eu consigo parafrasear o que a outra pessoa disse para confirmar meu entendimento?", pillar: "escuta", score: [0, 1, 2, 3] },
                 { text: "Eu respondo exatamente ao que foi perguntado, sem 'dar voltas'?", pillar: "escuta", score: [0, 1, 2, 3] },
                 // Pilar 7: Síntese (4Q)
-                { text: "Se me pedem para resumir uma reunião de 1 hora, consigo fazê-lo em 2 minutos?", pillar: "sintese", score: [0, 1, 2, 3] },
-                { text: "Eu sou conhecido por ir 'direto ao ponto'?", pillar: "sintese", score: [0, 1, 2, 3] },
-                { text: "Em e-mails ou mensagens de áudio, sou breve e objetivo?", pillar: "sintese", score: [0, 1, 2, 3] },
-                { text: "Eu 'enrolo' para chegar na conclusão principal?", pillar: "sintese", score: [3, 2, 1, 0] } // Reversa
-            ];
-            
-            // --- 2. LÓGICA DO QUIZ ---
-
-            const quizSection = document.getElementById("quiz-section");
-            const leadCaptureSection = document.getElementById("lead-capture-section");
-            const resultsSection = document.getElementById("results-section");
-            
-            const quizContent = document.getElementById("quiz-content");
-            const progressBar = document.getElementById("progress-bar");
-            const questionCounter = document.getElementById("question-counter");
-            
-            const leadForm = document.getElementById("lead-form");
-            const submitLeadBtn = document.getElementById("submit-lead-btn");
-            const emailInput = document.getElementById("email");
-
-            let currentQuestionIndex = 0;
-            const pillarScores = {
-                clareza: 0, postura: 0, voz: 0, vicios: 0, storytelling: 0, escuta: 0, sintese: 0
-            };
-            
-            // Variáveis para guardar o resultado final
-            let finalConcept = {};
-            let finalPillarArray = [];
-
-            function renderQuestion(index) {
-                if (index >= questions.length) {
-                    calculateFinalResults(); 
-                    showLeadCapture();       
-                    return;
-                }
-
-                const question = questions[index];
-                const progressPercentage = ((index) / questions.length) * 100;
-
-                progressBar.style.width = `${progressPercentage}%`;
-                questionCounter.textContent = `Pergunta ${index + 1} de ${questions.length}`;
-
-                quizContent.innerHTML = `
-                    <h2>${question.text}</h2>
-                    <div class="answer-options">
-                        <label>
-                            <input type="radio" name="q${index}" value="${question.score[0]}"> <span>Nunca / Raramente</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="q${index}" value="${question.score[1]}"> <span>Às Vezes</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="q${index}" value="${question.score[2]}"> <span>Frequentemente</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="q${index}" value="${question.score[3]}"> <span>Sempre / Quase Sempre</span>
-                        </label>
-                    </div>
-                    <button class="action-btn next-btn" disabled>Próxima</button>
-                `;
-
-                const labels = quizContent.querySelectorAll(".answer-options label");
-                const nextBtn = quizContent.querySelector(".action-btn.next-btn");
-
-                labels.forEach(label => {
-                    label.addEventListener("click", () => {
-                        labels.forEach(l => l.classList.remove("selected"));
-                        label.classList.add("selected");
-                        nextBtn.disabled = false;
-                    });
-                });
-
-                nextBtn.addEventListener("click", () => {
-                    const selectedRadio = quizContent.querySelector(`input[name="q${index}"]:checked`);
-                    if (selectedRadio) {
-                        const score = parseInt(selectedRadio.value);
-                        const pillar = question.pillar;
-                        pillarScores[pillar] += score;
-                        currentQuestionIndex++;
-                        renderQuestion(currentQuestionIndex);
-                    }
-                });
-            }
-
-            function calculateFinalResults() {
-                let totalScore = 0;
-                for (const pillar in pillarScores) {
-                    totalScore += pillarScores[pillar];
-                }
-
-                if (totalScore <= 30) {
-                    finalConcept = concepts.iniciante;
-                } else if (totalScore <= 60) {
-                    finalConcept = concepts.desenvolvimento;
-                } else if (totalScore <= 80) {
-                    finalConcept = concepts.eficaz;
-                } else {
-                    finalConcept = concepts.mestre;
-                }
-                finalConcept.totalScore = totalScore; 
-
-                finalPillarArray = Object.keys(pillarScores).map(key => {
-                    return {
-                        id: key,
-                        score: pillarScores[key],
-                        attentionText: pillars[key].attention
-                    };
-                });
-                
-                finalPillarArray.sort((a, b) => a.score - b.score);
-            }
-
-            function showLeadCapture() {
-                quizSection.classList.add("hidden");
-                leadCaptureSection.classList.remove("hidden");
-            }
-            
-            leadForm.addEventListener("submit", async (e) => {
-                e.preventDefault(); 
-                submitLeadBtn.disabled = true;
-                submitLeadBtn.textContent = "Enviando...";
-
-                const email = emailInput.value;
-
-                const dataToSend = {
-                    "e-mail": email,
-                    "conceito": finalConcept.level,
-                    "scoreTotal": finalConcept.totalScore,
-                    "scoreClareza": pillarScores.clareza,
-                    "scorePostura": pillarScores.postura,
-                    "scoreVoz": pillarScores.voz,
-                    "scoreVicios": pillarScores.vicios,
-                    "scoreStorytelling": pillarScores.storytelling,
-                    "scoreEscuta": pillarScores.escuta,
-                    "scoreSintese": pillarScores.sintese
-                };
-
-                try {
-                    await fetch(MAKE_WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(dataToSend)
-                    });
-                    
-                    showResultsPage();
-
-                } catch (error) {
-                    console.error("Erro ao enviar lead:", error);
-                    showResultsPage(); 
-                }
-            });
-
-            function showResultsPage() {
-                leadCaptureSection.classList.add("hidden");
-                resultsSection.classList.remove("hidden");
-
-                document.getElementById("result-concept").textContent = finalConcept.level;
-                document.getElementById("result-text").textContent = finalConcept.text;
-
-                const worstPillar1 = finalPillarArray[0];
-                const worstPillar2 = finalPillarArray[1];
-
-                const attentionList = document.getElementById("attention-points");
-                attentionList.innerHTML = `
-                    <li>${worstPillar1.attentionText}</li>
-                    <li>${worstPillar2.attentionText}</li>
-                `;
-            }
-
-            renderQuestion(currentQuestionIndex);
-        });
-    </script>
-
-</body>
-</html>
+                { text: "Se me pedem para resumir uma reunião de 1 hora, consigo faz
