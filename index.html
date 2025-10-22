@@ -87,7 +87,8 @@
             text-align: center;
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color); /* Separador sutil */
+            /* Removido border-bottom: 1px solid var(--border-color); */
+            /* para um visual mais limpo com o logo preto */
         }
 
         .logo-header img {
@@ -307,7 +308,7 @@
                 padding-top: 1rem;
                 margin-bottom: 1rem;
             }
-
+            
             h2 { /* Pergunta do Quiz */
                 font-size: 1.25rem;
                 min-height: 6em;
@@ -320,6 +321,7 @@
             .logo-header img {
                 max-width: 200px; /* Um pouco menor em mobile */
             }
+
 
             .answer-options label {
                 padding: 0.9rem;
@@ -335,7 +337,7 @@
 
     <div class="container">
         <div class="logo-header">
-            <img src="logo-leaders-academy-white.png" alt="Leader's Academy Logo">
+            <img src="logo-leaders-academy-black.png" alt="Leader's Academy Logo">
         </div>
 
         <section id="quiz-section">
@@ -343,7 +345,7 @@
             <div id="progress-bar-container">
                 <div id="progress-bar"></div>
             </div>
-            <div id="question-counter">Pergunta 1 de 30</div>
+            <div id="question-counter">Pergunta ${currentQuestionIndex + 1} de ${questions.length}</div>
             
             <div id="quiz-content">
                 <h2>Carregando pergunta...</h2>
@@ -386,7 +388,7 @@
                 </p>
                 
                 <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button">
-                    QUERO MEU RELATÓRIO COMPLETO AGONA
+                    QUERO MEU RELATÓRIO COMPLETO AGORA
                 </a>
             </div>
         </section>
