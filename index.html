@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Proficiência em Comunicação</title>
+    <title>Diagnóstico em Comunicação e Oratória</title>
 
     <style>
         /* --- 1. Reset e Estilos Globais (Estética Apple/macOS) --- */
@@ -82,13 +82,11 @@
             display: none !important;
         }
         
-        /* --- LOGO HEADER --- */
+        /* --- LOGO HEADER (AJUSTADO) --- */
         .logo-header {
             text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            /* Removido border-bottom: 1px solid var(--border-color); */
-            /* para um visual mais limpo com o logo preto */
+            margin-bottom: 1rem;  /* Reduzido de 2rem */
+            padding-bottom: 1rem; /* Reduzido de 1.5rem */
         }
 
         .logo-header img {
@@ -316,7 +314,8 @@
             
             .logo-header {
                 padding-top: 1rem; /* Espaçamento no topo em mobile */
-                margin-bottom: 1.5rem;
+                margin-bottom: 1rem;  /* Reduzido */
+                padding-bottom: 1rem; /* Reduzido */
             }
             .logo-header img {
                 max-width: 200px; /* Um pouco menor em mobile */
@@ -341,11 +340,12 @@
         </div>
 
         <section id="quiz-section">
-            <h1>Teste de Proficiência em Comunicação</h1>
+            <h1>Diagnóstico em Comunicação e Oratória</h1>
+            
             <div id="progress-bar-container">
                 <div id="progress-bar"></div>
             </div>
-            <div id="question-counter">Pergunta ${currentQuestionIndex + 1} de ${questions.length}</div>
+            <div id="question-counter">Pergunta 1 de 30</div>
             
             <div id="quiz-content">
                 <h2>Carregando pergunta...</h2>
