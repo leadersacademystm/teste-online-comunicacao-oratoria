@@ -83,7 +83,6 @@
         }
 
         /* --- 2. Estilos do Quiz --- */
-
         #progress-bar-container {
             width: 100%;
             background-color: #eef0f2;
@@ -129,10 +128,9 @@
         }
 
         .answer-options input[type="radio"] {
-            display: none; /* Esconde o rádio button original */
+            display: none;
         }
 
-        /* Classe .selected é adicionada via JS */
         .answer-options label.selected {
             border-color: var(--accent-blue);
             background-color: #f0f8ff;
@@ -140,7 +138,7 @@
             font-weight: 600;
         }
 
-        .next-btn {
+        .action-btn { /* Classe genérica para botões */
             width: 100%;
             padding: 1rem;
             font-size: 1rem;
@@ -154,16 +152,53 @@
             transition: background-color 0.2s ease;
         }
 
-        .next-btn:disabled {
+        .action-btn:disabled {
             background-color: #c7c7cc;
             cursor: not-allowed;
         }
 
-        .next-btn:hover:not(:disabled) {
+        .action-btn:hover:not(:disabled) {
             background-color: #0056b3;
         }
+        
+        /* --- 3. Estilos da Captura de Lead --- */
+        #lead-capture-section h2 {
+             font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            min-height: 0;
+            margin-bottom: 0.5rem;
+        }
+         #lead-capture-section p {
+            text-align: center;
+            margin-bottom: 1.5rem;
+         }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 0.9rem;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-element);
+        }
+        .form-group input[type="email"]:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(0,122,255,0.2);
+        }
 
-        /* --- 3. Estilos da Seção de Resultados --- */
+
+        /* --- 4. Estilos da Seção de Resultados --- */
         #results-section h2 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -236,7 +271,7 @@
             background-color: #218838;
         }
 
-        /* --- 4. Media Query para Responsividade (iPhones) --- */
+        /* --- 5. Media Query para Responsividade (iPhones) --- */
         @media (max-width: 600px) {
             body {
                 padding-top: 0;
@@ -277,20 +312,31 @@
 
         <section id="quiz-section">
             <h1>Teste de Proficiência em Comunicação</h1>
-
             <div id="progress-bar-container">
                 <div id="progress-bar"></div>
             </div>
-
             <div id="question-counter">Pergunta 1 de 30</div>
             
             <div id="quiz-content">
                 <h2>Carregando pergunta...</h2>
-                <div class="answer-options">
-                    </div>
-                <button class="next-btn" disabled>Próxima</button>
+                <div class="answer-options"></div>
+                <button class="action-btn next-btn" disabled>Próxima</button>
             </div>
         </section>
+
+        <section id="lead-capture-section" class="hidden">
+            <h2>Quase lá!</h2>
+            <p>Seus resultados estão prontos. Onde devemos enviá-los?</p>
+            
+            <form id="lead-form">
+                <div class="form-group">
+                    <label for="email">Seu melhor e-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                </div>
+                <button type="submit" id="submit-lead-btn" class="action-btn">Ver Meu Resultado</button>
+            </form>
+        </section>
+
 
         <section id="results-section" class="hidden">
             <h2>Seu Resultado Gratuito</h2>
@@ -321,59 +367,30 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
+            // --- 0. URL DO MAKE.COM ---
+            // !! IMPORTANTE !! Cole aqui a URL do Webhook que o Make.com lhe deu
+            const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/SEU-CODIGO-AQUI"; 
+            
+            
             // --- 1. CONFIGURAÇÃO DO QUIZ ---
 
             const concepts = {
-                iniciante: {
-                    level: "Comunicador Iniciante",
-                    text: "Você tem uma base sólida, mas grandes oportunidades de melhoria. A comunicação é uma habilidade que pode ser totalmente desenvolvida, e seu primeiro passo (fazer este teste) já foi dado."
-                },
-                desenvolvimento: {
-                    level: "Comunicador em Desenvolvimento",
-                    text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências. O foco agora é polir suas técnicas."
-                },
-                eficaz: {
-                    level: "Comunicador Eficaz",
-                    text: "Você se comunica de forma clara e eficiente. O próximo nível é transformar sua comunicação em uma ferramenta de alta persuasão."
-                },
-                mestre: {
-                    level: "Comunicador Mestre",
-                    text: "Parabéns! Você tem um domínio avançado da comunicação e oratória. Sua habilidade de se conectar, engajar e persuadir é clara."
-                }
+                iniciante: { level: "Comunicador Iniciante", text: "Você tem uma base sólida, mas grandes oportunidades de melhoria..." },
+                desenvolvimento: { level: "Comunicador em Desenvolvimento", text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências..." },
+                eficaz: { level: "Comunicador Eficaz", text: "Você se comunica de forma clara e eficiente. O próximo nível é a persuasão." },
+                mestre: { level: "Comunicador Mestre", text: "Parabéns! Você tem um domínio avançado da comunicação e oratória." }
             };
 
             const pillars = {
-                clareza: {
-                    name: "Clareza e Objetividade",
-                    attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria. Mensagens confusas podem diluir seu impacto."
-                },
-                postura: {
-                    name: "Linguagem Corporal e Postura",
-                    attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante do que suas palavras."
-                },
-                voz: {
-                    name: "Variedade Vocal e Dicção",
-                    attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode fazer a melhor das mensagens parecer desinteressante."
-                },
-                vicios: {
-                    name: "Controle de Vícios de Linguagem",
-                    attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem e tirando sua autoridade."
-                },
-                storytelling: {
-                    name: "Storytelling e Engajamento",
-                    attention: "Para realmente conectar, explore o <strong>Storytelling</strong>. Dados informam, mas histórias emocionam e são lembradas."
-                },
-                escuta: {
-                    name: "Escuta Ativa e Interação",
-                    attention: "A comunicação é uma via de mão dupla. Desenvolver sua <strong>Escuta Ativa</strong> pode ser o atalho para uma comunicação mais eficaz."
-                },
-                sintese: {
-                    name: "Poder de Síntese",
-                    attention: "Seu tempo (e o dos outros) é valioso. Aprimorar seu <strong>Poder de Síntese</strong> fará suas ideias serem ouvidas."
-                }
+                clareza: { name: "Clareza e Objetividade", attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria." },
+                postura: { name: "Linguagem Corporal e Postura", attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante." },
+                voz: { name: "Variedade Vocal e Dicção", attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode ser desinteressante." },
+                vicios: { name: "Controle de Vícios de Linguagem", attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem." },
+                storytelling: { name: "Storytelling e Engajamento", attention: "Para realmente conectar, explore o <strong>Storytelling</strong>." },
+                escuta: { name: "Escuta Ativa e Interação", attention: "A comunicação é uma via de mão dupla. Desenvolva sua <strong>Escuta Ativa</strong>." },
+                sintese: { name: "Poder de Síntese", attention: "Seu tempo é valioso. Aprimore seu <strong>Poder de Síntese</strong>." }
             };
 
-            // (Definir as 30 Perguntas)
             const questions = [
                 // Pilar 1: Clareza (5Q)
                 { text: "As pessoas costumam entender minhas instruções de primeira?", pillar: "clareza", score: [0, 1, 2, 3] },
@@ -416,66 +433,67 @@
             
             // --- 2. LÓGICA DO QUIZ ---
 
-            // Elementos do DOM
             const quizSection = document.getElementById("quiz-section");
+            const leadCaptureSection = document.getElementById("lead-capture-section");
             const resultsSection = document.getElementById("results-section");
+            
             const quizContent = document.getElementById("quiz-content");
             const progressBar = document.getElementById("progress-bar");
             const questionCounter = document.getElementById("question-counter");
+            
+            const leadForm = document.getElementById("lead-form");
+            const submitLeadBtn = document.getElementById("submit-lead-btn");
+            const emailInput = document.getElementById("email");
 
             let currentQuestionIndex = 0;
             const pillarScores = {
                 clareza: 0, postura: 0, voz: 0, vicios: 0, storytelling: 0, escuta: 0, sintese: 0
             };
+            
+            // Variáveis para guardar o resultado final
+            let finalConcept = {};
+            let finalPillarArray = [];
 
             function renderQuestion(index) {
                 if (index >= questions.length) {
-                    showResults();
+                    // *** MUDANÇA PRINCIPAL: Em vez de mostrar o resultado, mostra a captura de lead ***
+                    calculateFinalResults(); // Calcula e armazena os resultados
+                    showLeadCapture();       // Mostra o formulário de email
                     return;
                 }
 
                 const question = questions[index];
                 const progressPercentage = ((index) / questions.length) * 100;
 
-                // Atualiza Barra de Progresso e Contador
                 progressBar.style.width = `${progressPercentage}%`;
                 questionCounter.textContent = `Pergunta ${index + 1} de ${questions.length}`;
 
-                // Monta o HTML da Pergunta
                 quizContent.innerHTML = `
                     <h2>${question.text}</h2>
                     <div class="answer-options">
                         <label>
-                            <input type="radio" name="q${index}" value="${question.score[0]}"> 
-                            <span>Nunca / Raramente</span>
+                            <input type="radio" name="q${index}" value="${question.score[0]}"> <span>Nunca / Raramente</span>
                         </label>
                         <label>
-                            <input type="radio" name="q${index}" value="${question.score[1]}"> 
-                            <span>Às Vezes</span>
+                            <input type="radio" name="q${index}" value="${question.score[1]}"> <span>Às Vezes</span>
                         </label>
                         <label>
-                            <input type="radio" name="q${index}" value="${question.score[2]}"> 
-                            <span>Frequentemente</span>
+                            <input type="radio" name="q${index}" value="${question.score[2]}"> <span>Frequentemente</span>
                         </label>
                         <label>
-                            <input type="radio" name="q${index}" value="${question.score[3]}"> 
-                            <span>Sempre / Quase Sempre</span>
+                            <input type="radio" name="q${index}" value="${question.score[3]}"> <span>Sempre / Quase Sempre</span>
                         </label>
                     </div>
-                    <button class="next-btn" disabled>Próxima</button>
+                    <button class="action-btn next-btn" disabled>Próxima</button>
                 `;
 
-                // Adiciona Event Listeners para a nova pergunta
                 const labels = quizContent.querySelectorAll(".answer-options label");
                 const nextBtn = quizContent.querySelector(".next-btn");
 
                 labels.forEach(label => {
                     label.addEventListener("click", () => {
-                        // Remove a classe 'selected' de todos
                         labels.forEach(l => l.classList.remove("selected"));
-                        // Adiciona 'selected' ao clicado
                         label.classList.add("selected");
-                        // Ativa o botão
                         nextBtn.disabled = false;
                     });
                 });
@@ -485,57 +503,103 @@
                     if (selectedRadio) {
                         const score = parseInt(selectedRadio.value);
                         const pillar = question.pillar;
-                        
-                        // Armazena a pontuação no pilar correto
                         pillarScores[pillar] += score;
-                        
-                        // Avança
                         currentQuestionIndex++;
                         renderQuestion(currentQuestionIndex);
                     }
                 });
             }
 
-            function showResults() {
-                // Esconde o quiz, mostra os resultados
-                quizSection.classList.add("hidden");
-                resultsSection.classList.remove("hidden");
-
+            // (NOVA FUNÇÃO) Calcula os resultados e armazena em variáveis globais
+            function calculateFinalResults() {
                 let totalScore = 0;
                 for (const pillar in pillarScores) {
                     totalScore += pillarScores[pillar];
                 }
 
-                // 1. Definir o Conceito Geral (Total: 90 pontos)
-                let userConcept;
                 if (totalScore <= 30) {
-                    userConcept = concepts.iniciante;
+                    finalConcept = concepts.iniciante;
                 } else if (totalScore <= 60) {
-                    userConcept = concepts.desenvolvimento;
+                    finalConcept = concepts.desenvolvimento;
                 } else if (totalScore <= 80) {
-                    userConcept = concepts.eficaz;
+                    finalConcept = concepts.eficaz;
                 } else {
-                    userConcept = concepts.mestre;
+                    finalConcept = concepts.mestre;
                 }
+                finalConcept.totalScore = totalScore; // Armazena a pontuação total
 
-                document.getElementById("result-concept").textContent = userConcept.level;
-                document.getElementById("result-text").textContent = userConcept.text;
-
-                // 2. Definir os 2 Piores Pilares
-                const pillarArray = Object.keys(pillarScores).map(key => {
+                finalPillarArray = Object.keys(pillarScores).map(key => {
                     return {
                         id: key,
                         score: pillarScores[key],
                         attentionText: pillars[key].attention
                     };
                 });
+                
+                finalPillarArray.sort((a, b) => a.score - b.score);
+            }
 
-                // Ordena do pior (menor pontuação) para o melhor
-                pillarArray.sort((a, b) => a.score - b.score);
+            // (NOVA FUNÇÃO) Mostra a seção de captura de leads
+            function showLeadCapture() {
+                quizSection.classList.add("hidden");
+                leadCaptureSection.classList.remove("hidden");
+            }
+            
+            // (NOVA FUNÇÃO) Lida com o envio do formulário de lead
+            leadForm.addEventListener("submit", async (e) => {
+                e.preventDefault(); // Impede o recarregamento da página
+                submitLeadBtn.disabled = true;
+                submitLeadBtn.textContent = "Enviando...";
 
-                // Pega os 2 piores
-                const worstPillar1 = pillarArray[0];
-                const worstPillar2 = pillarArray[1];
+                const email = emailInput.value;
+
+                // 1. Monta o pacote de dados para o Make.com
+                const dataToSend = {
+                    "e-mail": email,
+                    "conceito": finalConcept.level,
+                    "scoreTotal": finalConcept.totalScore,
+                    "scoreClareza": pillarScores.clareza,
+                    "scorePostura": pillarScores.postura,
+                    "scoreVoz": pillarScores.voz,
+                    "scoreVicios": pillarScores.vicios,
+                    "scoreStorytelling": pillarScores.storytelling,
+                    "scoreEscuta": pillarScores.escuta,
+                    "scoreSintese": pillarScores.sintese
+                };
+
+                try {
+                    // 2. Envia os dados para o Webhook
+                    await fetch(MAKE_WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(dataToSend)
+                    });
+                    
+                    // 3. Se deu certo (ou mesmo se não deu, o usuário não precisa saber),
+                    // finalmente mostramos os resultados.
+                    showResultsPage();
+
+                } catch (error) {
+                    console.error("Erro ao enviar lead:", error);
+                    // Mesmo se der erro, mostramos o resultado para não prejudicar o usuário.
+                    showResultsPage(); 
+                }
+            });
+
+
+            // (FUNÇÃO MODIFICADA) Agora esta função só *mostra* os resultados
+            function showResultsPage() {
+                leadCaptureSection.classList.add("hidden");
+                resultsSection.classList.remove("hidden");
+
+                // Preenche os resultados que já foram calculados
+                document.getElementById("result-concept").textContent = finalConcept.level;
+                document.getElementById("result-text").textContent = finalConcept.text;
+
+                const worstPillar1 = finalPillarArray[0];
+                const worstPillar2 = finalPillarArray[1];
 
                 const attentionList = document.getElementById("attention-points");
                 attentionList.innerHTML = `
