@@ -22,6 +22,7 @@
     <title>Diagnóstico em Comunicação e Oratória</title>
 
     <style>
+        /* --- 1. Reset e Estilos Globais (Estética Apple/macOS) --- */
         :root {
             --accent-blue: #007aff;
             --accent-green: #28a745;
@@ -33,11 +34,13 @@
             --border-radius-container: 16px;
             --border-radius-element: 10px;
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-page);
@@ -48,6 +51,7 @@
             min-height: 100vh;
             padding-top: 2rem;
         }
+
         .container {
             width: 90%;
             max-width: 600px;
@@ -57,47 +61,60 @@
             padding: 2.5rem;
             margin-bottom: 2rem;
         }
+
         h1, h2, h3, h4 {
             line-height: 1.3;
         }
+
+        /* --- TÍTULO (H1) AJUSTADO --- */
         h1 {
-            font-size: 1.75rem;
+            font-size: 1.65rem; /* Reduzido ligeiramente */
             font-weight: 700;
             text-align: center;
             margin-bottom: 1.5rem;
         }
-        h2 {
+
+        h2 { /* Pergunta do Quiz */
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            min-height: 5em;
+            min-height: 5em; /* Garante altura mínima para não "pular" */
         }
-        h3 {
+
+        h3 { /* Conceito do Resultado */
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--accent-blue);
             margin-bottom: 0.5rem;
         }
+
         p {
             font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.5;
             margin-bottom: 1rem;
         }
+
         .hidden {
             display: none !important;
         }
+        
+        /* --- LOGO HEADER (AJUSTADO NOVAMENTE) --- */
         .logo-header {
             text-align: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
+            margin-bottom: 0.5rem;  /* Reduzido de 1rem */
+            padding-bottom: 0.5rem; /* Reduzido de 1rem */
         }
+
         .logo-header img {
             max-width: 250px;
             height: auto;
             display: block;
             margin: 0 auto;
         }
+
+
+        /* --- 2. Estilos do Quiz --- */
         #progress-bar-container {
             width: 100%;
             background-color: #eef0f2;
@@ -106,6 +123,7 @@
             margin-bottom: 2rem;
             overflow: hidden;
         }
+
         #progress-bar {
             width: 0%;
             height: 100%;
@@ -113,17 +131,20 @@
             border-radius: 5px;
             transition: width 0.3s ease-out;
         }
+
         #question-counter {
             font-size: 0.9rem;
             font-weight: 500;
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
+
         .answer-options {
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
         }
+
         .answer-options label {
             display: block;
             padding: 1rem;
@@ -133,19 +154,23 @@
             transition: all 0.2s ease;
             font-weight: 500;
         }
+
         .answer-options label:hover {
             background-color: #f9f9f9;
         }
+
         .answer-options input[type="radio"] {
             display: none;
         }
+
         .answer-options label.selected {
             border-color: var(--accent-blue);
             background-color: #f0f8ff;
             color: #0056b3;
             font-weight: 600;
         }
-        .action-btn {
+
+        .action-btn { /* Classe genérica para botões */
             width: 100%;
             padding: 1rem;
             font-size: 1rem;
@@ -158,13 +183,17 @@
             margin-top: 2rem;
             transition: background-color 0.2s ease;
         }
+
         .action-btn:disabled {
             background-color: #c7c7cc;
             cursor: not-allowed;
         }
+
         .action-btn:hover:not(:disabled) {
             background-color: #0056b3;
         }
+        
+        /* --- 3. Estilos da Captura de Lead --- */
         #lead-capture-section h2 {
              font-size: 1.5rem;
             font-weight: 700;
@@ -176,14 +205,17 @@
             text-align: center;
             margin-bottom: 1.5rem;
          }
+        
         .form-group {
             margin-bottom: 1rem;
         }
+        
         .form-group label {
             display: block;
             font-weight: 500;
             margin-bottom: 0.5rem;
         }
+        
         .form-group input[type="email"] {
             width: 100%;
             padding: 0.9rem;
@@ -196,6 +228,9 @@
             border-color: var(--accent-blue);
             box-shadow: 0 0 0 2px rgba(0,122,255,0.2);
         }
+
+
+        /* --- 4. Estilos da Seção de Resultados --- */
         #results-section h2 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -203,10 +238,12 @@
             min-height: 0;
             margin-bottom: 1.5rem;
         }
+
         #attention-points {
             list-style: none;
             margin: 1.5rem 0;
         }
+
         #attention-points li {
             background-color: #fff8e1;
             border-left: 4px solid #ffc107;
@@ -215,6 +252,7 @@
             font-weight: 500;
             color: #665200;
         }
+
         .cta-box {
             background-color: var(--bg-page);
             border-radius: 12px;
@@ -222,26 +260,32 @@
             text-align: center;
             margin-top: 2rem;
         }
+        
         .cta-box h3 {
             color: var(--text-primary);
         }
+
         .cta-box p {
             color: var(--text-secondary);
         }
+
         .price {
             margin: 1rem 0;
         }
+
         .price .old-price {
             text-decoration: line-through;
             color: #999;
             font-size: 1rem;
         }
+
         .price .new-price {
             font-size: 1.75rem;
             font-weight: 700;
             color: var(--accent-green);
             margin-left: 0.5rem;
         }
+
         .cta-button {
             display: inline-block;
             width: 100%;
@@ -254,13 +298,17 @@
             margin-top: 1rem;
             transition: background-color 0.2s;
         }
+
         .cta-button:hover {
             background-color: #218838;
         }
+
+        /* --- 5. Media Query para Responsividade (iPhones) --- */
         @media (max-width: 600px) {
             body {
                 padding-top: 0;
             }
+            
             .container {
                 width: 100%;
                 margin: 0;
@@ -269,26 +317,32 @@
                 box-shadow: none;
                 min-height: 100vh;
             }
+
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.4rem; /* Reduzido também em mobile */
                 padding-top: 1rem;
                 margin-bottom: 1rem;
             }
-            h2 {
+            
+            h2 { /* Pergunta do Quiz */
                 font-size: 1.25rem;
                 min-height: 6em;
             }
+            
             .logo-header {
                 padding-top: 1rem; 
-                margin-bottom: 1rem;
-                padding-bottom: 1rem;
+                margin-bottom: 0.5rem; /* Reduzido */
+                padding-bottom: 0.5rem; /* Reduzido */
             }
             .logo-header img {
                 max-width: 200px;
             }
+
+
             .answer-options label {
                 padding: 0.9rem;
             }
+
             .cta-box {
                 padding: 1.5rem;
             }
@@ -451,19 +505,15 @@
                 questionCounter.textContent = `Pergunta ${index + 1} de ${questions.length}`;
 
                 // --- INÍCIO DA MUDANÇA (JS ROBUSTO) ---
-                // Limpa o conteúdo antigo
                 quizContent.innerHTML = ''; 
 
-                // Cria o H2 (título da pergunta)
                 const questionTitle = document.createElement('h2');
                 questionTitle.textContent = question.text;
                 quizContent.appendChild(questionTitle);
 
-                // Cria a div das opções
                 const optionsDiv = document.createElement('div');
                 optionsDiv.className = 'answer-options';
 
-                // Cria os 4 labels de resposta
                 answerOptionsText.forEach((text, i) => {
                     const label = document.createElement('label');
                     
@@ -482,7 +532,6 @@
                 
                 quizContent.appendChild(optionsDiv);
 
-                // Cria o botão "Próxima"
                 const nextBtn = document.createElement('button');
                 nextBtn.className = 'action-btn next-btn';
                 nextBtn.textContent = 'Próxima';
@@ -491,7 +540,6 @@
                 // --- FIM DA MUDANÇA ---
 
 
-                // Adiciona Event Listeners para os novos elementos
                 const labels = quizContent.querySelectorAll(".answer-options label");
 
                 labels.forEach(label => {
@@ -568,7 +616,6 @@
                 };
 
                 try {
-                    // Envia os dados para o Make.com (Google Sheets)
                     await fetch(MAKE_WEBHOOK_URL, {
                         method: 'POST',
                         headers: {
@@ -577,11 +624,7 @@
                         body: JSON.stringify(dataToSend)
                     });
 
-                    // ========================================================
-                    // ### PIXEL DE LEAD ATUALIZADO (COM CORRESPONDÊNCIA MANUAL) ###
-                    // ========================================================
                     if (typeof fbq === 'function') {
-                        
                         fbq('init', '1303934443348126', {
                             em: email
                         });
