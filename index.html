@@ -81,6 +81,22 @@
         .hidden {
             display: none !important;
         }
+        
+        /* --- LOGO HEADER --- */
+        .logo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color); /* Separador sutil */
+        }
+
+        .logo-header img {
+            max-width: 250px; /* Ajuste o tamanho máximo conforme necessário */
+            height: auto;
+            display: block; /* Para centralizar com margin auto */
+            margin: 0 auto;
+        }
+
 
         /* --- 2. Estilos do Quiz --- */
         #progress-bar-container {
@@ -289,11 +305,20 @@
             h1 {
                 font-size: 1.5rem;
                 padding-top: 1rem;
+                margin-bottom: 1rem;
             }
 
             h2 { /* Pergunta do Quiz */
                 font-size: 1.25rem;
                 min-height: 6em;
+            }
+            
+            .logo-header {
+                padding-top: 1rem; /* Espaçamento no topo em mobile */
+                margin-bottom: 1.5rem;
+            }
+            .logo-header img {
+                max-width: 200px; /* Um pouco menor em mobile */
             }
 
             .answer-options label {
@@ -309,6 +334,9 @@
 <body>
 
     <div class="container">
+        <div class="logo-header">
+            <img src="logo-leaders-academy-white.png" alt="Leader's Academy Logo">
+        </div>
 
         <section id="quiz-section">
             <h1>Teste de Proficiência em Comunicação</h1>
@@ -358,7 +386,7 @@
                 </p>
                 
                 <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button">
-                    QUERO MEU RELATÓRIO COMPLETO AGORA
+                    QUERO MEU RELATÓRIO COMPLETO AGONA
                 </a>
             </div>
         </section>
@@ -375,20 +403,20 @@
             // --- 1. CONFIGURAÇÃO DO QUIZ ---
 
             const concepts = {
-                iniciante: { level: "Comunicador Iniciante", text: "Você tem uma base sólida, mas grandes oportunidades de melhoria..." },
-                desenvolvimento: { level: "Comunicador em Desenvolvimento", text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências..." },
-                eficaz: { level: "Comunicador Eficaz", text: "Você se comunica de forma clara e eficiente. O próximo nível é a persuasão." },
-                mestre: { level: "Comunicador Mestre", text: "Parabéns! Você tem um domínio avançado da comunicação e oratória." }
+                iniciante: { level: "Comunicador Iniciante", text: "Você tem uma base sólida, mas grandes oportunidades de melhoria. A comunicação é uma habilidade que pode ser totalmente desenvolvida, e seu primeiro passo (fazer este teste) já foi dado." },
+                desenvolvimento: { level: "Comunicador em Desenvolvimento", text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências. O foco agora é polir suas técnicas." },
+                eficaz: { level: "Comunicador Eficaz", text: "Você se comunica de forma clara e eficiente. O próximo nível é transformar sua comunicação em uma ferramenta de alta persuasão." },
+                mestre: { level: "Comunicador Mestre", text: "Parabéns! Você tem um domínio avançado da comunicação e oratória. Sua habilidade de se conectar, engajar e persuadir é clara." }
             };
 
             const pillars = {
-                clareza: { name: "Clareza e Objetividade", attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria." },
-                postura: { name: "Linguagem Corporal e Postura", attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante." },
-                voz: { name: "Variedade Vocal e Dicção", attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode ser desinteressante." },
-                vicios: { name: "Controle de Vícios de Linguagem", attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem." },
-                storytelling: { name: "Storytelling e Engajamento", attention: "Para realmente conectar, explore o <strong>Storytelling</strong>." },
-                escuta: { name: "Escuta Ativa e Interação", attention: "A comunicação é uma via de mão dupla. Desenvolva sua <strong>Escuta Ativa</strong>." },
-                sintese: { name: "Poder de Síntese", attention: "Seu tempo é valioso. Aprimore seu <strong>Poder de Síntese</strong>." }
+                clareza: { name: "Clareza e Objetividade", attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria. Mensagens confusas podem diluir seu impacto." },
+                postura: { name: "Linguagem Corporal e Postura", attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante do que suas palavras." },
+                voz: { name: "Variedade Vocal e Dicção", attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode fazer a melhor das mensagens parecer desinteressante." },
+                vicios: { name: "Controle de Vícios de Linguagem", attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem e tirando sua autoridade." },
+                storytelling: { name: "Storytelling e Engajamento", attention: "Para realmente conectar, explore o <strong>Storytelling</strong>. Dados informam, mas histórias emocionam e são lembradas." },
+                escuta: { name: "Escuta Ativa e Interação", attention: "A comunicação é uma via de mão dupla. Desenvolver sua <strong>Escuta Ativa</strong> pode ser o atalho para uma comunicação mais eficaz." },
+                sintese: { name: "Poder de Síntese", attention: "Seu tempo (e o dos outros) é valioso. Aprimorar seu <strong>Poder de Síntese</strong> fará suas ideias serem ouvidas." }
             };
 
             const questions = [
@@ -456,9 +484,8 @@
 
             function renderQuestion(index) {
                 if (index >= questions.length) {
-                    // *** MUDANÇA PRINCIPAL: Em vez de mostrar o resultado, mostra a captura de lead ***
-                    calculateFinalResults(); // Calcula e armazena os resultados
-                    showLeadCapture();       // Mostra o formulário de email
+                    calculateFinalResults(); 
+                    showLeadCapture();       
                     return;
                 }
 
@@ -488,7 +515,7 @@
                 `;
 
                 const labels = quizContent.querySelectorAll(".answer-options label");
-                const nextBtn = quizContent.querySelector(".next-btn");
+                const nextBtn = quizContent.querySelector(".action-btn.next-btn");
 
                 labels.forEach(label => {
                     label.addEventListener("click", () => {
@@ -510,7 +537,6 @@
                 });
             }
 
-            // (NOVA FUNÇÃO) Calcula os resultados e armazena em variáveis globais
             function calculateFinalResults() {
                 let totalScore = 0;
                 for (const pillar in pillarScores) {
@@ -526,7 +552,7 @@
                 } else {
                     finalConcept = concepts.mestre;
                 }
-                finalConcept.totalScore = totalScore; // Armazena a pontuação total
+                finalConcept.totalScore = totalScore; 
 
                 finalPillarArray = Object.keys(pillarScores).map(key => {
                     return {
@@ -539,21 +565,18 @@
                 finalPillarArray.sort((a, b) => a.score - b.score);
             }
 
-            // (NOVA FUNÇÃO) Mostra a seção de captura de leads
             function showLeadCapture() {
                 quizSection.classList.add("hidden");
                 leadCaptureSection.classList.remove("hidden");
             }
             
-            // (NOVA FUNÇÃO) Lida com o envio do formulário de lead
             leadForm.addEventListener("submit", async (e) => {
-                e.preventDefault(); // Impede o recarregamento da página
+                e.preventDefault(); 
                 submitLeadBtn.disabled = true;
                 submitLeadBtn.textContent = "Enviando...";
 
                 const email = emailInput.value;
 
-                // 1. Monta o pacote de dados para o Make.com
                 const dataToSend = {
                     "e-mail": email,
                     "conceito": finalConcept.level,
@@ -568,7 +591,6 @@
                 };
 
                 try {
-                    // 2. Envia os dados para o Webhook
                     await fetch(MAKE_WEBHOOK_URL, {
                         method: 'POST',
                         headers: {
@@ -577,24 +599,18 @@
                         body: JSON.stringify(dataToSend)
                     });
                     
-                    // 3. Se deu certo (ou mesmo se não deu, o usuário não precisa saber),
-                    // finalmente mostramos os resultados.
                     showResultsPage();
 
                 } catch (error) {
                     console.error("Erro ao enviar lead:", error);
-                    // Mesmo se der erro, mostramos o resultado para não prejudicar o usuário.
                     showResultsPage(); 
                 }
             });
 
-
-            // (FUNÇÃO MODIFICADA) Agora esta função só *mostra* os resultados
             function showResultsPage() {
                 leadCaptureSection.classList.add("hidden");
                 resultsSection.classList.remove("hidden");
 
-                // Preenche os resultados que já foram calculados
                 document.getElementById("result-concept").textContent = finalConcept.level;
                 document.getElementById("result-text").textContent = finalConcept.text;
 
@@ -608,7 +624,6 @@
                 `;
             }
 
-            // Inicia o Quiz
             renderQuestion(currentQuestionIndex);
         });
     </script>
