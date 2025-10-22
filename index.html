@@ -45,7 +45,7 @@
             padding: 2.5rem; margin-bottom: 2rem;
         }
         h1, h2, h3, h4 { line-height: 1.3; }
-        h1 { font-size: 1.65rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; } /* Margem reduzida */
+        h1 { font-size: 1.65rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
         h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; min-height: 5em; }
         h3 { font-size: 1.5rem; font-weight: 600; color: var(--accent-blue); margin-bottom: 0.5rem; }
         p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem; }
@@ -53,10 +53,10 @@
         .logo-header { text-align: center; margin-bottom: 0.5rem; padding-bottom: 0.5rem; }
         .logo-header img { max-width: 250px; height: auto; display: block; margin: 0 auto; }
         
-        /* --- NOVOS ESTILOS: Subtítulo e Nota de Autoridade --- */
-        .subtitle, .authority-note { text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem; }
-        .subtitle { font-size: 0.95rem; margin-top: -1rem; }
-        .authority-note { font-size: 0.85rem; color: #999; margin-top: -1rem; }
+        /* --- AJUSTE ESPAÇAMENTO v2: Subtítulo e Nota de Autoridade --- */
+        .subtitle, .authority-note { text-align: center; color: var(--text-secondary); margin-bottom: 1rem; }
+        .subtitle { font-size: 0.95rem; margin-top: 0.5rem; /* AUMENTADO - Mais espaço após H1 */ line-height: 1.4; }
+        .authority-note { font-size: 0.85rem; color: #999; margin-top: -0.2rem; margin-bottom: 2rem; }
         
         #progress-bar-container { width: 100%; background-color: #eef0f2; border-radius: 5px; height: 8px; margin-bottom: 2rem; overflow: hidden; }
         #progress-bar { width: 0%; height: 100%; background-color: var(--accent-blue); border-radius: 5px; transition: width 0.3s ease-out; }
@@ -86,8 +86,6 @@
         .price .new-price { font-size: 1.75rem; font-weight: 700; color: var(--accent-green); margin-left: 0.5rem; }
         .cta-button { display: inline-block; width: 100%; padding: 1rem; background-color: var(--accent-green); color: white; text-decoration: none; font-weight: 600; border-radius: var(--border-radius-element); margin-top: 1rem; transition: background-color 0.2s; }
         .cta-button:hover { background-color: #218838; }
-
-        /* --- NOVO: Estilos da Tela de Carregamento --- */
         #loading-section { text-align: center; padding: 4rem 0; }
         .spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent-blue); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
         #loading-section p { font-weight: 500; color: var(--text-secondary); margin-top: 1rem; }
@@ -96,12 +94,15 @@
         @media (max-width: 600px) {
             body { padding-top: 0; }
             .container { width: 100%; margin: 0; padding: 1.5rem; border-radius: 0; box-shadow: none; min-height: 100vh; }
-            h1 { font-size: 1.6rem; padding-top: 1rem; margin-bottom: 0.5rem; } /* Ajustado */
-            .subtitle { font-size: 0.9rem; margin-top: 0; } /* Ajustado */
-            .authority-note { font-size: 0.8rem; margin-top: -0.5rem; } /* Ajustado */
+            h1 { font-size: 1.6rem; padding-top: 1rem; margin-bottom: 0.5rem; }
+            
+            /* --- AJUSTE ESPAÇAMENTO MOBILE v2 --- */
+            .subtitle { font-size: 0.9rem; margin-top: 0.8rem; /* Aumentado */ line-height: 1.4; margin-bottom: 0.8rem; }
+            .authority-note { font-size: 0.8rem; margin-top: 0; margin-bottom: 1.5rem; } 
+            
             h2 { font-size: 1.25rem; min-height: 6em; }
             .logo-header { padding-top: 1rem; margin-bottom: 0.5rem; padding-bottom: 0.5rem; }
-            .logo-header img { max-width: 180px; } /* Reduzido um pouco mais */
+            .logo-header img { max-width: 180px; }
             .answer-options label { padding: 0.9rem; }
             .cta-box { padding: 1.5rem; }
         }
@@ -117,7 +118,7 @@
         <section id="quiz-section">
             <h1>Diagnóstico em Comunicação e Oratória</h1>
             <p class="subtitle">Entenda seus pontos fortes e fracos para se comunicar com mais impacto.<br>Descubra seu nível em aproximadamente 3-5 minutos.</p>
-            <p class="authority-note">Desenvolvido pela Leader's Academy, que já ajudou mais de 300 pessoas a melhorarem sua comunicação e oratória.</p>
+            <p class="authority-note">Já ajudamos mais de 300 pessoas a melhorarem sua comunicação e oratória.</p>
             
             <div id="progress-bar-container">
                 <div id="progress-bar"></div>
@@ -200,7 +201,7 @@
             ];
             
             const quizSection = document.getElementById("quiz-section");
-            const loadingSection = document.getElementById("loading-section"); // Referência à nova seção
+            const loadingSection = document.getElementById("loading-section"); 
             const leadCaptureSection = document.getElementById("lead-capture-section");
             const resultsSection = document.getElementById("results-section");
             const quizContent = document.getElementById("quiz-content");
@@ -217,10 +218,9 @@
             const answerOptionsText = ["Nunca / Raramente", "Às Vezes", "Frequentemente", "Sempre / Quase Sempre"];
 
             function renderQuestion(index) {
-                // --- AJUSTE NA LÓGICA FINAL ---
                 if (index >= questions.length) {
                     calculateFinalResults(); 
-                    showLoadingScreen(); // Mostra o loading ANTES de pedir o lead     
+                    showLoadingScreen();     
                     return;
                 }
 
@@ -288,20 +288,17 @@
                 finalPillarArray.sort((a, b) => a.score - b.score);
             }
 
-            // --- NOVA FUNÇÃO: Mostrar Loading ---
             function showLoadingScreen() {
                 quizSection.classList.add("hidden");
-                loadingSection.classList.remove("hidden"); // Mostra o loading
+                loadingSection.classList.remove("hidden"); 
 
-                // Aguarda 3 segundos
                 setTimeout(() => {
-                    loadingSection.classList.add("hidden"); // Esconde o loading
-                    showLeadCapture(); // Mostra o formulário de lead
-                }, 3000); // 3000ms = 3 segundos
+                    loadingSection.classList.add("hidden"); 
+                    showLeadCapture(); 
+                }, 3000); 
             }
 
             function showLeadCapture() {
-                // Esta função permanece a mesma, apenas mostra a seção de lead
                 leadCaptureSection.classList.remove("hidden");
             }
             
