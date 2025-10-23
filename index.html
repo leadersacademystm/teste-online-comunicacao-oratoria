@@ -53,9 +53,8 @@
         .logo-header { text-align: center; margin-bottom: 0.5rem; padding-bottom: 0.5rem; }
         .logo-header img { max-width: 250px; height: auto; display: block; margin: 0 auto; }
         
-        /* --- AJUSTE ESPAÇAMENTO v2: Subtítulo e Nota de Autoridade --- */
         .subtitle, .authority-note { text-align: center; color: var(--text-secondary); margin-bottom: 1rem; }
-        .subtitle { font-size: 0.95rem; margin-top: 0.5rem; /* AUMENTADO - Mais espaço após H1 */ line-height: 1.4; }
+        .subtitle { font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.4; }
         .authority-note { font-size: 0.85rem; color: #999; margin-top: -0.2rem; margin-bottom: 2rem; }
         
         #progress-bar-container { width: 100%; background-color: #eef0f2; border-radius: 5px; height: 8px; margin-bottom: 2rem; overflow: hidden; }
@@ -96,8 +95,7 @@
             .container { width: 100%; margin: 0; padding: 1.5rem; border-radius: 0; box-shadow: none; min-height: 100vh; }
             h1 { font-size: 1.6rem; padding-top: 1rem; margin-bottom: 0.5rem; }
             
-            /* --- AJUSTE ESPAÇAMENTO MOBILE v2 --- */
-            .subtitle { font-size: 0.9rem; margin-top: 0.8rem; /* Aumentado */ line-height: 1.4; margin-bottom: 0.8rem; }
+            .subtitle { font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.4; margin-bottom: 0.8rem; }
             .authority-note { font-size: 0.8rem; margin-top: 0; margin-bottom: 1.5rem; } 
             
             h2 { font-size: 1.25rem; min-height: 6em; }
@@ -179,8 +177,12 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/SEU-CODIGO-AQUI"; 
+            // --- 0. URL DO MAKE.COM (ATUALIZADA COM SUA URL) ---
+            const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/ter8xjf4mb2aadw3ok68dkr4xbb8ta1a"; 
             
+            
+            // --- 1. CONFIGURAÇÃO DO QUIZ ---
+
             const concepts = {
                 iniciante: { level: "Comunicador Iniciante", text: "Você tem uma base sólida, mas grandes oportunidades de melhoria. A comunicação é uma habilidade que pode ser totalmente desenvolvida, e seu primeiro passo (fazer este teste) já foi dado." },
                 desenvolvimento: { level: "Comunicador em Desenvolvimento", text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências. O foco agora é polir suas técnicas." },
