@@ -311,14 +311,35 @@ document.addEventListener("DOMContentLoaded", () => {
         const dataToSend = { "e-mail": email, "conceito": finalConcept.level, "scoreTotal": finalConcept.totalScore, "scoreClareza": pillarScores.clareza, "scorePostura": pillarScores.postura, "scoreVoz": pillarScores.voz, "scoreVicios": pillarScores.vicios, "scoreStorytelling": pillarScores.storytelling, "scoreEscuta": pillarScores.escuta, "scoreSintese": pillarScores.sintese };
 
         try {
-            await fetch(MAKE_WEBHOOK_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dataToSend) });
-            if (typeof fbq === 'function') {
-                fbq('init', '1303934443348126', { em: email });
-                fbq('track', 'Lead');
-            }
+             // ========================================================
+             // ### PIXEL DE LEAD MOVIDO PARA ANTES DO FETCH ###
+             // ========================================================
+             console.log("Tentando disparar Pixel Lead..."); // Log para depuração
+             if (typeof fbq === 'function') {
+                 fbq('init', '1303934443348126', {
+                     em: email
+                 });
+                 fbq('track', 'Lead');
+                 console.log("Pixel Lead disparado (ou tentado)."); // Log para depuração
+             } else {
+                 console.log("Função fbq não encontrada."); // Log para depuração
+             }
+
+            // Envia os dados para o Make.com (Google Sheets)
+            console.log("Tentando enviar para Make.com..."); // Log para depuração
+            await fetch(MAKE_WEBHOOK_URL, { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify(dataToSend) 
+            });
+            console.log("Envio para Make.com concluído (sem erros no fetch)."); // Log para depuração
+            
             showResultsPage();
+
         } catch (error) {
-            console.error("Erro ao enviar lead:", error);
+            console.error("Erro durante o envio (Make ou Pixel):", error);
+             // Mesmo se der erro no fetch ou pixel, mostramos o resultado
+             // O pixel já foi tentado antes do fetch.
             showResultsPage(); 
         }
     });
