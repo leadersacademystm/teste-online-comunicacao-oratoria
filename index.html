@@ -300,7 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
             label.addEventListener("click", () => {
                 labels.forEach(l => l.classList.remove("selected"));
                 label.classList.add("selected");
-                // Verifica se nextBtn existe antes de habilitar
                 if (nextBtn) { 
                     nextBtn.disabled = false;
                 } else {
@@ -309,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        if (nextBtn) { // Verifica se nextBtn existe antes de adicionar listener
+        if (nextBtn) { 
             nextBtn.addEventListener("click", () => {
                 const selectedRadio = quizContent.querySelector(`input[name="q${index}"]:checked`);
                 if (selectedRadio) {
@@ -381,6 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const dataToSend = { "e-mail": email, "conceito": finalConcept.level, "scoreTotal": finalConcept.totalScore, "scoreClareza": pillarScores.clareza, "scorePostura": pillarScores.postura, "scoreVoz": pillarScores.voz, "scoreVicios": pillarScores.vicios, "scoreStorytelling": pillarScores.storytelling, "scoreEscuta": pillarScores.escuta, "scoreSintese": pillarScores.sintese };
 
         try {
+             // Mantendo o Pixel Lead simplificado por enquanto
              console.log("LOG H: Tentando disparar Pixel Lead (SIMPLES)..."); 
              if (typeof fbq === 'function') {
                  fbq('track', 'Lead'); 
