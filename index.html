@@ -175,7 +175,281 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
 </div>
 
 <script>
-console.log("--- TESTE DE EXECUÇÃO JAVASCRIPT --- O SCRIPT ESTÁ RODANDO! ---"); 
+console.log("LOG 0: Script principal iniciado."); // LOG 0
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("LOG A: DOMContentLoaded disparado."); // LOG A
+    
+    // --- 0. URL DO MAKE.COM (ATUALIZADA COM SUA URL) ---
+    const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/ter8xjf4mb2aadw3ok68dkr4xbb8ta1a"; 
+    
+    
+    // --- 1. CONFIGURAÇÃO DO QUIZ ---
+
+    const concepts = {
+        iniciante: { level: "Comunicador Iniciante", text: "Você tem uma base sólida, mas grandes oportunidades de melhoria. A comunicação é uma habilidade que pode ser totalmente desenvolvida, e seu primeiro passo (fazer este teste) já foi dado." },
+        desenvolvimento: { level: "Comunicador em Desenvolvimento", text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências. O foco agora é polir suas técnicas." },
+        eficaz: { level: "Comunicador Eficaz", text: "Você se comunica de forma clara e eficiente. O próximo nível é transformar sua comunicação em uma ferramenta de alta persuasão." },
+        mestre: { level: "Comunicador Mestre", text: "Parabéns! Você tem um domínio avançado da comunicação e oratória. Sua habilidade de se conectar, engajar e persuadir é clara." }
+    };
+    const pillars = {
+        clareza: { name: "Clareza e Objetividade", attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria. Mensagens confusas podem diluir seu impacto." },
+        postura: { name: "Linguagem Corporal e Postura", attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante do que suas palavras." },
+        voz: { name: "Variedade Vocal e Dicção", attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode fazer a melhor das mensagens parecer desinteressante." },
+        vicios: { name: "Controle de Vícios de Linguagem", attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem e tirando sua autoridade." },
+        storytelling: { name: "Storytelling e Engajamento", attention: "Para realmente conectar, explore o <strong>Storytelling</strong>. Dados informam, mas histórias emocionam e são lembradas." },
+        escuta: { name: "Escuta Ativa e Interação", attention: "A comunicação é uma via de mão dupla. Desenvolver sua <strong>Escuta Ativa</strong> pode ser o atalho para uma comunicação mais eficaz." },
+        sintese: { name: "Poder de Síntese", attention: "Seu tempo (e o dos outros) é valioso. Aprimorar seu <strong>Poder de Síntese</strong> fará suas ideias serem ouvidas." }
+    };
+    const questions = [
+        { text: "As pessoas costumam entender minhas instruções de primeira?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu organizo meus pensamentos (início, meio e fim) antes de falar algo importante?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu consigo explicar um conceito complexo usando termos simples?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "As pessoas pedem para eu repetir o que eu disse?", pillar: "clareza", score: [3, 2, 1, 0] },{ text: "Eu evito jargões técnicos ao falar com quem não é da minha área?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu mantenho contato visual com minha audiência?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu gesticulo com as mãos de forma natural para enfatizar minhas palavras?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minha postura é ereta e aberta (evitando braços cruzados)?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minhas expressões faciais correspondem à emoção da minha mensagem?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu me sinto 'travado' com meu corpo ao falar em público?", pillar: "postura", score: [3, 2, 1, 0] },{ text: "Eu altero o tom e o volume da minha voz para evitar monotonia?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu falo em um ritmo (velocidade) que é fácil de acompanhar?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "As pessoas comentam que minha voz é clara e fácil de ouvir?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu pratico exercícios de aquecimento vocal antes de apresentações?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu me pego usando 'né', 'tipo', 'ãhn', 'então...' repetidamente?", pillar: "vicios", score: [3, 2, 1, 0] },{ text: "Eu consigo fazer pausas em silêncio (sem preenchê-las com ruídos)?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu reviso gravações minhas para identificar e reduzir vícios?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Ao ser pego de surpresa, consigo responder sem 'engasgar'?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu uso exemplos práticos ou histórias pessoais para ilustrar meus pontos?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu faço perguntas retóricas ou diretas para envolver quem me ouve?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu consigo transformar dados 'chatos' em uma narrativa interessante?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu percebo que as pessoas 'desconectam' quando eu falo por muito tempo?", pillar: "storytelling", score: [3, 2, 1, 0] },{ text: "Eu espero a outra pessoa concluir o raciocínio antes de formular minha resposta?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu demonstro que estou ouvindo (acenando com a cabeça, etc)?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu consigo parafrasear o que a outra pessoa disse para confirmar meu entendimento?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu respondo exatamente ao que foi perguntado, sem 'dar voltas'?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Se me pedem para resumir uma reunião de 1 hora, consigo fazê-lo em 2 minutos?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu sou conhecido por ir 'direto ao ponto'?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Em e-mails ou mensagens de áudio, sou breve e objetivo?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu 'enrolo' para chegar na conclusão principal?", pillar: "sintese", score: [3, 2, 1, 0] }
+    ];
+    
+    // --- 2. LÓGICA DO QUIZ ---
+
+    const quizSection = document.getElementById("quiz-section");
+    const loadingSection = document.getElementById("loading-section"); 
+    const leadCaptureSection = document.getElementById("lead-capture-section");
+    const resultsSection = document.getElementById("results-section");
+    const quizContent = document.getElementById("quiz-content");
+    const progressBar = document.getElementById("progress-bar");
+    const questionCounter = document.getElementById("question-counter");
+    const leadForm = document.getElementById("lead-form");
+    const submitLeadBtn = document.getElementById("submit-lead-btn");
+    const emailInput = document.getElementById("email");
+
+    // LOG B: Verifica se os elementos principais foram encontrados
+    console.log("LOG B: Verificando elementos...");
+    console.log("  quizSection:", quizSection ? "Encontrado" : "NÃO ENCONTRADO!");
+    console.log("  quizContent:", quizContent ? "Encontrado" : "NÃO ENCONTRADO!");
+    console.log("  progressBar:", progressBar ? "Encontrado" : "NÃO ENCONTRADO!");
+    console.log("  questionCounter:", questionCounter ? "Encontrado" : "NÃO ENCONTRADO!");
+    console.log("  leadForm:", leadForm ? "Encontrado" : "NÃO ENCONTRADO!");
+
+    let currentQuestionIndex = 0;
+    const pillarScores = { clareza: 0, postura: 0, voz: 0, vicios: 0, storytelling: 0, escuta: 0, sintese: 0 };
+    let finalConcept = {};
+    let finalPillarArray = [];
+    const answerOptionsText = ["Nunca / Raramente", "Às Vezes", "Frequentemente", "Sempre / Quase Sempre"];
+
+    function renderQuestion(index) {
+        console.log("LOG 1: Entrando em renderQuestion para índice:", index); // LOG 1
+
+        if (index >= questions.length) {
+            console.log("LOG 2: Índice fora dos limites, calculando resultados..."); // LOG 2
+            calculateFinalResults(); 
+            showLoadingScreen();     
+            return;
+        }
+
+        // Verifica se os elementos necessários existem ANTES de usá-los
+        if (!quizContent || !progressBar || !questionCounter) {
+             console.error("ERRO FATAL: Elemento(s) essencial(is) do quiz não encontrado(s). Verifique os IDs no HTML.");
+             return; // Para a execução se elementos cruciais faltam
+        }
+
+        const question = questions[index];
+        if (!question || !question.score) { 
+             console.error("ERRO: Objeto 'question' inválido ou sem 'score' para o índice:", index, question); 
+             return; 
+        }
+        console.log("LOG 3: Pergunta carregada:", question.text); // LOG 3
+        const progressPercentage = ((index) / questions.length) * 100;
+
+        progressBar.style.width = `${progressPercentage}%`;
+        questionCounter.textContent = `Pergunta ${index + 1} de ${questions.length}`;
+
+        quizContent.innerHTML = ''; 
+        console.log("LOG 4: quizContent limpo."); // LOG 4
+
+        const questionTitle = document.createElement('h2');
+        questionTitle.textContent = question.text;
+        quizContent.appendChild(questionTitle);
+        console.log("LOG 5: Título H2 adicionado."); // LOG 5
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'answer-options';
+        console.log("LOG 6: Div de opções criada."); // LOG 6
+
+        answerOptionsText.forEach((text, i) => {
+             console.log("LOG 7: Criando opção:", i, text); // LOG 7 (dentro do loop)
+             if (question.score && typeof question.score[i] !== 'undefined') { 
+                 const label = document.createElement('label');
+                 const radio = document.createElement('input');
+                 radio.type = 'radio'; radio.name = `q${index}`; radio.value = question.score[i];
+                 const span = document.createElement('span');
+                 span.textContent = ` ${text}`;
+                 label.appendChild(radio); label.appendChild(span); optionsDiv.appendChild(label);
+             } else {
+                 console.error("ERRO: Score indefinido para opção", i, " na pergunta:", index, question);
+             }
+        });
+        
+        quizContent.appendChild(optionsDiv);
+        console.log("LOG 8: Div de opções adicionada ao quizContent."); // LOG 8
+
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'action-btn next-btn'; nextBtn.textContent = 'Próxima'; nextBtn.disabled = true;
+        quizContent.appendChild(nextBtn);
+        console.log("LOG 9: Botão 'Próxima' adicionado."); // LOG 9
+
+        // Adicionando event listeners
+        console.log("LOG 10: Adicionando event listeners..."); // LOG 10
+        const labels = quizContent.querySelectorAll(".answer-options label");
+        labels.forEach(label => {
+            label.addEventListener("click", () => {
+                labels.forEach(l => l.classList.remove("selected"));
+                label.classList.add("selected");
+                // Verifica se nextBtn existe antes de habilitar
+                if (nextBtn) { 
+                    nextBtn.disabled = false;
+                } else {
+                    console.error("ERRO: Botão 'Próxima' não encontrado ao tentar habilitar.");
+                }
+            });
+        });
+
+        if (nextBtn) { // Verifica se nextBtn existe antes de adicionar listener
+            nextBtn.addEventListener("click", () => {
+                const selectedRadio = quizContent.querySelector(`input[name="q${index}"]:checked`);
+                if (selectedRadio) {
+                    const score = parseInt(selectedRadio.value);
+                    if (question.pillar && typeof pillarScores[question.pillar] !== 'undefined') {
+                        pillarScores[question.pillar] += score;
+                    } else {
+                        console.error("ERRO: Pilar inválido ou não encontrado na pergunta:", index, question);
+                    }
+                    currentQuestionIndex++;
+                    renderQuestion(currentQuestionIndex);
+                }
+            });
+        } else {
+             console.error("ERRO: Botão 'Próxima' não encontrado para adicionar listener de clique.");
+        }
+        console.log("LOG 11: renderQuestion concluída para índice:", index); // LOG 11
+    }
+
+    function calculateFinalResults() {
+        console.log("LOG C: Calculando resultados finais...");
+        let totalScore = 0;
+        for (const pillar in pillarScores) { totalScore += pillarScores[pillar]; }
+
+        if (totalScore <= 30) { finalConcept = concepts.iniciante; } 
+        else if (totalScore <= 60) { finalConcept = concepts.desenvolvimento; } 
+        else if (totalScore <= 80) { finalConcept = concepts.eficaz; } 
+        else { finalConcept = concepts.mestre; }
+        finalConcept.totalScore = totalScore; 
+
+        finalPillarArray = Object.keys(pillarScores).map(key => ({
+            id: key, score: pillarScores[key], attentionText: pillars[key].attention
+        }));
+        finalPillarArray.sort((a, b) => a.score - b.score);
+        console.log("LOG D: Resultados calculados:", finalConcept, finalPillarArray);
+    }
+
+    function showLoadingScreen() {
+        console.log("LOG E: Mostrando tela de loading...");
+        if (quizSection) quizSection.classList.add("hidden");
+        if (loadingSection) loadingSection.classList.remove("hidden"); 
+
+        setTimeout(() => {
+            console.log("LOG F: Escondendo loading, mostrando captura de lead...");
+            if (loadingSection) loadingSection.classList.add("hidden"); 
+            showLeadCapture(); 
+        }, 3000); 
+    }
+
+    function showLeadCapture() {
+        if (leadCaptureSection) leadCaptureSection.classList.remove("hidden");
+        else console.error("ERRO: Seção de captura de lead não encontrada!");
+    }
+    
+    leadForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); 
+        console.log("LOG G: Formulário de lead enviado.");
+        if (submitLeadBtn) {
+            submitLeadBtn.disabled = true; submitLeadBtn.textContent = "Enviando...";
+        }
+        const email = emailInput ? emailInput.value : null;
+        if (!email) {
+            console.error("ERRO: Campo de e-mail não encontrado ou vazio.");
+            if (submitLeadBtn) { 
+                 submitLeadBtn.disabled = false; submitLeadBtn.textContent = "Ver Meu Resultado";
+            }
+            return; 
+        }
+        const dataToSend = { "e-mail": email, "conceito": finalConcept.level, "scoreTotal": finalConcept.totalScore, "scoreClareza": pillarScores.clareza, "scorePostura": pillarScores.postura, "scoreVoz": pillarScores.voz, "scoreVicios": pillarScores.vicios, "scoreStorytelling": pillarScores.storytelling, "scoreEscuta": pillarScores.escuta, "scoreSintese": pillarScores.sintese };
+
+        try {
+             console.log("LOG H: Tentando disparar Pixel Lead (SIMPLES)..."); 
+             if (typeof fbq === 'function') {
+                 fbq('track', 'Lead'); 
+                 console.log("LOG I: Pixel Lead (SIMPLES) disparado (ou tentado)."); 
+             } else {
+                 console.log("LOG J: Função fbq não encontrada."); 
+             }
+
+            console.log("LOG K: Tentando enviar para Make.com..."); 
+            await fetch(MAKE_WEBHOOK_URL, { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify(dataToSend) 
+            });
+            console.log("LOG L: Envio para Make.com concluído (sem erros no fetch)."); 
+            
+            showResultsPage();
+
+        } catch (error) {
+            console.error("ERRO M: Erro durante o envio (Make ou Pixel):", error);
+            showResultsPage(); 
+        }
+    });
+
+    function showResultsPage() {
+        console.log("LOG N: Mostrando página de resultados...");
+        if (leadCaptureSection) leadCaptureSection.classList.add("hidden");
+        if (resultsSection) resultsSection.classList.remove("hidden");
+        else {
+             console.error("ERRO: Seção de resultados não encontrada!");
+             return;
+        }
+
+        const resultConceptEl = document.getElementById("result-concept");
+        const resultTextEl = document.getElementById("result-text");
+        const attentionList = document.getElementById("attention-points");
+
+        if (resultConceptEl && resultTextEl && attentionList && finalPillarArray.length >= 2) {
+            resultConceptEl.textContent = finalConcept.level || 'N/A';
+            resultTextEl.textContent = finalConcept.text || 'N/A';
+
+            const worstPillar1 = finalPillarArray[0];
+            const worstPillar2 = finalPillarArray[1];
+            attentionList.innerHTML = `<li>${worstPillar1.attentionText || ''}</li><li>${worstPillar2.attentionText || ''}</li>`;
+            console.log("LOG O: Página de resultados preenchida.");
+        } else {
+             console.error("ERRO: Elemento(s) da página de resultados não encontrado(s) ou dados insuficientes.");
+        }
+    }
+
+    // Adiciona um try-catch geral para pegar erros na inicialização
+    try {
+        console.log("LOG P: Chamando renderQuestion(0) pela primeira vez.");
+        if (questions && questions.length > 0) {
+           renderQuestion(currentQuestionIndex);
+        } else {
+           console.error("ERRO FATAL: Array 'questions' está vazio ou indefinido.");
+            if(quizContent) {
+                quizContent.innerHTML = '<h2>Ocorreu um erro ao carregar as perguntas. Tente recarregar a página.</h2>';
+            }
+        }
+    } catch (error) {
+        console.error("ERRO FATAL Q: Erro ao iniciar o quiz:", error);
+        if(quizContent) {
+            quizContent.innerHTML = '<h2>Ocorreu um erro ao carregar o quiz. Tente recarregar a página.</h2>';
+        }
+    }
+});
+console.log("LOG Z: Script principal finalizado."); // LOG Z
 </script>
 
 </body>
