@@ -124,7 +124,7 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
         <div id="question-counter">Pergunta 1 de 30</div>
         
         <div id="quiz-content">
-            <h2>Carregando pergunta...</h2>
+            <h2>Carregando pergunta...</h2> 
             <div class="answer-options"></div>
             <button class="action-btn next-btn" disabled>Próxima</button>
         </div>
@@ -175,64 +175,8 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
 </div>
 
 <script>
-console.log("LOG 0: Script principal iniciado."); // LOG 0
+console.log("--- TESTE DE EXECUÇÃO JAVASCRIPT --- O SCRIPT ESTÁ RODANDO! ---"); 
+</script>
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("LOG A: DOMContentLoaded disparado."); // LOG A
-    
-    // --- 0. URL DO MAKE.COM (ATUALIZADA COM SUA URL) ---
-    const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/ter8xjf4mb2aadw3ok68dkr4xbb8ta1a"; 
-    
-    
-    // --- 1. CONFIGURAÇÃO DO QUIZ ---
-
-    const concepts = {
-        iniciante: { level: "Comunicador Iniciante", text: "Você tem uma base sólida, mas grandes oportunidades de melhoria. A comunicação é uma habilidade que pode ser totalmente desenvolvida, e seu primeiro passo (fazer este teste) já foi dado." },
-        desenvolvimento: { level: "Comunicador em Desenvolvimento", text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências. O foco agora é polir suas técnicas." },
-        eficaz: { level: "Comunicador Eficaz", text: "Você se comunica de forma clara e eficiente. O próximo nível é transformar sua comunicação em uma ferramenta de alta persuasão." },
-        mestre: { level: "Comunicador Mestre", text: "Parabéns! Você tem um domínio avançado da comunicação e oratória. Sua habilidade de se conectar, engajar e persuadir é clara." }
-    };
-    const pillars = {
-        clareza: { name: "Clareza e Objetividade", attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria. Mensagens confusas podem diluir seu impacto." },
-        postura: { name: "Linguagem Corporal e Postura", attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante do que suas palavras." },
-        voz: { name: "Variedade Vocal e Dicção", attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode fazer a melhor das mensagens parecer desinteressante." },
-        vicios: { name: "Controle de Vícios de Linguagem", attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem e tirando sua autoridade." },
-        storytelling: { name: "Storytelling e Engajamento", attention: "Para realmente conectar, explore o <strong>Storytelling</strong>. Dados informam, mas histórias emocionam e são lembradas." },
-        escuta: { name: "Escuta Ativa e Interação", attention: "A comunicação é uma via de mão dupla. Desenvolver sua <strong>Escuta Ativa</strong> pode ser o atalho para uma comunicação mais eficaz." },
-        sintese: { name: "Poder de Síntese", attention: "Seu tempo (e o dos outros) é valioso. Aprimorar seu <strong>Poder de Síntese</strong> fará suas ideias serem ouvidas." }
-    };
-    const questions = [
-        { text: "As pessoas costumam entender minhas instruções de primeira?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu organizo meus pensamentos (início, meio e fim) antes de falar algo importante?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu consigo explicar um conceito complexo usando termos simples?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "As pessoas pedem para eu repetir o que eu disse?", pillar: "clareza", score: [3, 2, 1, 0] },{ text: "Eu evito jargões técnicos ao falar com quem não é da minha área?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu mantenho contato visual com minha audiência?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu gesticulo com as mãos de forma natural para enfatizar minhas palavras?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minha postura é ereta e aberta (evitando braços cruzados)?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minhas expressões faciais correspondem à emoção da minha mensagem?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu me sinto 'travado' com meu corpo ao falar em público?", pillar: "postura", score: [3, 2, 1, 0] },{ text: "Eu altero o tom e o volume da minha voz para evitar monotonia?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu falo em um ritmo (velocidade) que é fácil de acompanhar?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "As pessoas comentam que minha voz é clara e fácil de ouvir?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu pratico exercícios de aquecimento vocal antes de apresentações?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu me pego usando 'né', 'tipo', 'ãhn', 'então...' repetidamente?", pillar: "vicios", score: [3, 2, 1, 0] },{ text: "Eu consigo fazer pausas em silêncio (sem preenchê-las com ruídos)?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu reviso gravações minhas para identificar e reduzir vícios?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Ao ser pego de surpresa, consigo responder sem 'engasgar'?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu uso exemplos práticos ou histórias pessoais para ilustrar meus pontos?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu faço perguntas retóricas ou diretas para envolver quem me ouve?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu consigo transformar dados 'chatos' em uma narrativa interessante?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu percebo que as pessoas 'desconectam' quando eu falo por muito tempo?", pillar: "storytelling", score: [3, 2, 1, 0] },{ text: "Eu espero a outra pessoa concluir o raciocínio antes de formular minha resposta?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu demonstro que estou ouvindo (acenando com a cabeça, etc)?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu consigo parafrasear o que a outra pessoa disse para confirmar meu entendimento?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu respondo exatamente ao que foi perguntado, sem 'dar voltas'?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Se me pedem para resumir uma reunião de 1 hora, consigo fazê-lo em 2 minutos?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu sou conhecido por ir 'direto ao ponto'?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Em e-mails ou mensagens de áudio, sou breve e objetivo?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu 'enrolo' para chegar na conclusão principal?", pillar: "sintese", score: [3, 2, 1, 0] }
-    ];
-    
-    // --- 2. LÓGICA DO QUIZ ---
-
-    const quizSection = document.getElementById("quiz-section");
-    const loadingSection = document.getElementById("loading-section"); 
-    const leadCaptureSection = document.getElementById("lead-capture-section");
-    const resultsSection = document.getElementById("results-section");
-    const quizContent = document.getElementById("quiz-content");
-    const progressBar = document.getElementById("progress-bar");
-    const questionCounter = document.getElementById("question-counter");
-    const leadForm = document.getElementById("lead-form");
-    const submitLeadBtn = document.getElementById("submit-lead-btn");
-    const emailInput = document.getElementById("email");
-
-    // LOG B: Verifica se os elementos principais foram encontrados
-    console.log("LOG B: Verificando elementos...");
-    console.log("  quizSection:", quizSection ? "Encontrado" : "NÃO ENCONTRADO!");
-    console.log("  quizContent:", quizContent ? "Encontrado" : "NÃO ENCONTRADO!");
-    console.log("  progressBar:", progressBar ? "Encontrado" : "NÃO ENCONTRADO!");
-    console.log("  questionCounter:", questionCounter ? "Encontrado" : "NÃO ENCONTRADO!");
-    console.log("  leadForm:", leadForm ? "Encontrado" : "NÃO ENCONTRADO!");
-
-    let currentQuestionIndex = 0;
-    const pillarScores = { clareza: 0, postura: 0, voz: 0, vicios: 0, storytelling: 0, escuta: 0, sintese: 0 };
-    let finalConcept = {};
-    let finalPillarArray = [];
-    const answerOptionsText = ["Nunca / Raramente", "Às Vezes", "Frequentemente", "Sempre / Quase Sempre"];
-
-    function renderQuestion(index) {
-        console.log("LOG 1: Entrando em renderQuestion para índice:", index); // LOG 1
-
-        if (index >= questions.length
+</body>
+</html>
