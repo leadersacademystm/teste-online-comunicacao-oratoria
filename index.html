@@ -383,11 +383,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Preenche VAC (incluindo o ícone)
             vacIconEl.alt = `Ícone ${inferredVac.type || 'Estilo'}`; 
-             if (inferredVac.icon && inferredVac.icon !== '') { // Verifica se há um nome de ícone válido
-                 vacIconEl.src = inferredVac.icon; // Define o src do ícone
-                 vacIconEl.style.display = 'block'; // Mostra a imagem
+             if (inferredVac.icon && inferredVac.icon !== '') { 
+                 vacIconEl.src = inferredVac.icon; 
+                 vacIconEl.style.display = 'block'; 
              } else {
-                 vacIconEl.style.display = 'none'; // Esconde se não houver ícone definido
+                 vacIconEl.style.display = 'none'; 
              }
 
             vacTextEl.innerHTML = inferredVac.text || 'Não foi possível determinar seu estilo predominante.';
