@@ -84,7 +84,7 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
 #pillar-levels li span.level-medio { color: #b38b5d; }
 #pillar-levels li span.level-alto { color: #28a745; }
 #vac-style { margin-top: 2rem; padding: 1.5rem; background-color: #f9f9f9; border: 1px solid var(--border-color); border-radius: var(--border-radius-element); display: flex; align-items: flex-start; gap: 1rem; }
-#vac-style img { width: 40px; height: 40px; flex-shrink: 0; margin-top: 5px; display: none; /* Começa escondido */ }
+#vac-style img { width: 40px; height: 40px; flex-shrink: 0; margin-top: 5px; display: none; }
 #vac-style h4 { margin-top: 0; font-size: 1.05rem; }
 #vac-style strong { color: var(--accent-gold); }
 #vac-style ul { list-style: disc; padding-left: 20px; font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-secondary); }
@@ -172,7 +172,8 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
         <ul id="pillar-levels"></ul>
 
         <div id="vac-style">
-             <img id="vac-icon" src="" alt="Ícone Estilo de Comunicação"> {/* src deixado vazio, JS preenche */}
+             {/* Comentário Removido */}
+             <img id="vac-icon" src="" alt="Ícone Estilo de Comunicação">
              <div>
                 <h4>Estilo de Comunicação Predominante (Emissor)</h4>
                 <p id="vac-text"></p>
@@ -190,7 +191,8 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
                 <span class="new-price">R$9,90</span>
             </p>
             
-            <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button"> {/* Lembre de por seu link aqui */}
+            {/* Comentário Removido */}
+            <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button"> 
                 QUERO MEU RELATÓRIO COMPLETO AGORA
             </a>
         </div>
@@ -256,7 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const kinestheticScore = pillarScores.escuta || 0; 
         const maxScore = Math.max(visualScore, auditoryScore, kinestheticScore);
         
-        // Usa os nomes de arquivo exatos que você forneceu
         const vacData = {
             visual: { type: 'Visual', icon: 'icon-visual.png', text: 'Sua comunicação sugere traços do estilo <strong>Visual</strong>. Pessoas com essa preferência geralmente pensam por imagens e são mais conectadas ao que veem.', examples: ['Usa expressões como "Veja bem...", "Isso parece claro?"','Gesticula bastante, como se estivesse "desenhando" no ar.','Presta atenção na aparência e na organização visual das coisas.'] },
             auditivo: { type: 'Auditivo', icon: 'icon-auditivo.png', text: 'Sua comunicação sugere traços do estilo <strong>Auditivo</strong>. Pessoas com essa preferência processam informações ouvindo e prestando atenção às palavras e sons.', examples: ['Usa expressões como "Isso soa bem", "Ouça o que estou dizendo".','Gosta de explicações verbais detalhadas e debates.','Percebe facilmente mudanças no tom de voz das pessoas.'] },
@@ -281,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
              inferredVac.type = contenders.map(c => c.type).join(' / ') || 'Misto/Indefinido';
              inferredVac.text = `Sua comunicação parece combinar traços dos estilos <strong>${inferredVac.type}</strong>. Você pode se adaptar bem a diferentes formas de interação ou seu estilo é equilibrado.`;
              inferredVac.examples = [];
-             inferredVac.icon = 'icon-misto.png'; // Usa o ícone misto para empates
+             inferredVac.icon = 'icon-misto.png'; 
         }
     }
 
@@ -382,11 +383,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Preenche VAC (incluindo o ícone)
             vacIconEl.alt = `Ícone ${inferredVac.type || 'Estilo'}`; 
-             if (inferredVac.icon && inferredVac.icon !== 'icon-placeholder.png' && inferredVac.icon !== '') { // Verifica se há um nome de ícone válido
-                 vacIconEl.src = inferredVac.icon; 
-                 vacIconEl.style.display = 'block'; 
+             if (inferredVac.icon && inferredVac.icon !== '') { // Verifica se há um nome de ícone válido
+                 vacIconEl.src = inferredVac.icon; // Define o src do ícone
+                 vacIconEl.style.display = 'block'; // Mostra a imagem
              } else {
-                 vacIconEl.style.display = 'none'; // Esconde se não houver ícone definido ou for placeholder/vazio
+                 vacIconEl.style.display = 'none'; // Esconde se não houver ícone definido
              }
 
             vacTextEl.innerHTML = inferredVac.text || 'Não foi possível determinar seu estilo predominante.';
