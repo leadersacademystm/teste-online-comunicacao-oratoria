@@ -22,11 +22,29 @@ src="https://www.facebook.com/tr?id=1303934443348126&ev=PageView&noscript=1"
 <title>Diagnóstico em Comunicação e Oratória</title>
 
 <style>
-/* Estilos CSS permanecem os mesmos da versão anterior */
-:root { --accent-blue: #007aff; --accent-gold: #b38b5d; --accent-green: #28a745; --bg-page: #f5f5f7; --bg-container: #ffffff; --text-primary: #1d1d1f; --text-secondary: #6e6e73; --border-color: #d2d2d7; --border-radius-container: 16px; --border-radius-element: 10px; }
+:root {
+    --accent-blue: #007aff;
+    --accent-gold: #b38b5d;
+    --accent-green: #28a745;
+    --bg-page: #f5f5f7;
+    --bg-container: #ffffff;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --border-color: #d2d2d7;
+    --border-radius-container: 16px;
+    --border-radius-element: 10px;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: var(--bg-page); color: var(--text-primary); display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding-top: 2rem; }
-.container { width: 90%; max-width: 600px; background-color: var(--bg-container); border-radius: var(--border-radius-container); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); padding: 2.5rem; margin-bottom: 2rem; }
+body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-page); color: var(--text-primary); display: flex;
+    justify-content: center; align-items: flex-start; min-height: 100vh; padding-top: 2rem;
+}
+.container {
+    width: 90%; max-width: 600px; background-color: var(--bg-container);
+    border-radius: var(--border-radius-container); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem; margin-bottom: 2rem;
+}
 h1, h2, h3, h4 { line-height: 1.3; }
 h1 { font-size: 1.65rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
 h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; min-height: 5em; }
@@ -55,8 +73,13 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
 #lead-capture-section p { text-align: center; margin-bottom: 1.5rem; }
 .form-group { margin-bottom: 1rem; }
 .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
-.form-group input[type="email"] { width: 100%; padding: 0.9rem; font-size: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-element); }
-.form-group input[type="email"]:focus { outline: none; border-color: var(--accent-gold); box-shadow: 0 0 0 2px rgba(179, 139, 93, 0.3); }
+/* Input geral */
+.form-group input[type="email"], .form-group input[type="text"] {
+    width: 100%; padding: 0.9rem; font-size: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-element);
+}
+.form-group input[type="email"]:focus, .form-group input[type="text"]:focus {
+     outline: none; border-color: var(--accent-gold); box-shadow: 0 0 0 2px rgba(179, 139, 93, 0.3);
+}
 #results-section h2 { font-size: 1.5rem; font-weight: 700; text-align: center; min-height: 0; margin-bottom: 1.5rem; }
 #pillar-levels { list-style: none; padding-left: 0; margin: 1.5rem 0; column-count: 2; column-gap: 1.5rem; }
 #pillar-levels li { background-color: #f9f9f9; border-left: 4px solid var(--border-color); padding: 0.8rem 1rem; margin-bottom: 0.75rem; font-size: 0.9rem; -webkit-column-break-inside: avoid; page-break-inside: avoid; break-inside: avoid; }
@@ -128,14 +151,19 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
 
     <section id="loading-section" class="hidden">
         <div class="spinner"></div>
-        <p>Analisando suas respostas...</p>
+        <p id="loading-text">Analisando suas respostas...</p> {/* ID Adicionado */}
     </section>
 
     <section id="lead-capture-section" class="hidden">
         <h2>Seu diagnóstico está sendo calculado!</h2>
-        <p>Informe seu e-mail para receber o resultado detalhado:</p>
+        <p>Informe seus dados para receber o resultado detalhado:</p> {/* Texto ajustado */}
         
         <form id="lead-form">
+            {/* Campo Nome Adicionado */}
+            <div class="form-group">
+                <label for="name">Seu nome:</label>
+                <input type="text" id="name" name="name" required placeholder="Nome Completo">
+            </div>
             <div class="form-group">
                 <label for="email">Seu melhor e-mail:</label>
                 <input type="email" id="email" name="email" required placeholder="seu@email.com">
@@ -154,7 +182,7 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
         <ul id="pillar-levels"></ul>
 
         <div id="vac-style">
-             <img id="vac-icon" src="" alt="Ícone Estilo de Comunicação"> {/* Tag limpa */}
+             <img id="vac-icon" src="" alt="Ícone Estilo de Comunicação">
              <div>
                 <h4>Estilo de Comunicação Predominante (Emissor)</h4>
                 <p id="vac-text"></p>
@@ -172,8 +200,7 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
                 <span class="new-price">R$9,90</span>
             </p>
             
-             {/* Tag limpa */}
-            <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button"> 
+            <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button">
                 QUERO MEU RELATÓRIO COMPLETO AGORA
             </a>
         </div>
@@ -193,4 +220,247 @@ document.addEventListener("DOMContentLoaded", () => {
         mestre: { level: "Comunicador Mestre", text: "Parabéns! Você tem um domínio avançado da comunicação e oratória. Sua habilidade de se conectar, engajar e persuadir é clara." }
     };
     const pillars = {
-        clareza: { name
+        clareza: { name: "Clareza e Objetividade", questions: 5, attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria. Mensagens confusas podem diluir seu impacto." },
+        postura: { name: "Linguagem Corporal e Postura", questions: 5, attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante do que suas palavras." },
+        voz: { name: "Variedade Vocal e Dicção", questions: 4, attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode fazer a melhor das mensagens parecer desinteressante." },
+        vicios: { name: "Controle de Vícios de Linguagem", questions: 4, attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem e tirando sua autoridade." },
+        storytelling: { name: "Storytelling e Engajamento", questions: 4, attention: "Para realmente conectar, explore o <strong>Storytelling</strong>. Dados informam, mas histórias emocionam e são lembradas." },
+        escuta: { name: "Escuta Ativa e Interação", questions: 4, attention: "A comunicação é uma via de mão dupla. Desenvolver sua <strong>Escuta Ativa</strong> pode ser o atalho para uma comunicação mais eficaz." },
+        sintese: { name: "Poder de Síntese", questions: 4, attention: "Seu tempo (e o dos outros) é valioso. Aprimorar seu <strong>Poder de Síntese</strong> fará suas ideias serem ouvidas." }
+    };
+    const questions = [
+        { text: "Normalmente, as pessoas entendem de primeira o que você pede ou explica?", pillar: "clareza", score: [0, 1, 2, 3] }, { text: "Você organiza seus pensamentos (início, meio, fim) antes de falar algo importante?", pillar: "clareza", score: [0, 1, 2, 3] }, { text: "Você consegue explicar algo complexo usando palavras simples ou exemplos?", pillar: "clareza", score: [0, 1, 2, 3] }, { text: "É comum pedirem para você repetir ou explicar de novo o que disse?", pillar: "clareza", score: [3, 2, 1, 0] }, { text: "Você evita usar muitos termos técnicos ao falar com quem não é da sua área?", pillar: "clareza", score: [0, 1, 2, 3] }, { text: "Você mantém contato visual com as pessoas enquanto conversa ou apresenta?", pillar: "postura", score: [0, 1, 2, 3] }, { text: "Você gesticula com as mãos de forma natural para dar ênfase ao que fala?", pillar: "postura", score: [0, 1, 2, 3] }, { text: "Sua postura costuma ser ereta e aberta (sem braços cruzados) quando se comunica?", pillar: "postura", score: [0, 1, 2, 3] }, { text: "Suas expressões faciais combinam com a emoção da sua mensagem?", pillar: "postura", score: [0, 1, 2, 3] }, { text: "Você se sente 'travado(a)' ou desconfortável com seu corpo ao falar em público?", pillar: "postura", score: [3, 2, 1, 0] }, { text: "Você varia o tom e o volume da sua voz para tornar a fala mais interessante?", pillar: "voz", score: [0, 1, 2, 3] }, { text: "Você fala num ritmo que é fácil para os outros acompanharem?", pillar: "voz", score: [0, 1, 2, 3] }, { text: "As pessoas costumam dizer que sua voz é clara e fácil de ouvir?", pillar: "voz", score: [0, 1, 2, 3] }, { text: "Você faz algum tipo de aquecimento vocal antes de apresentações importantes?", pillar: "voz", score: [0, 1, 2, 3] }, { text: "Você percebe se usa muito 'né', 'tipo', 'ãhn', 'então...' enquanto fala?", pillar: "vicios", score: [3, 2, 1, 0] }, { text: "Você consegue fazer pausas em silêncio para pensar, sem usar ruídos como 'hmmm'?", pillar: "vicios", score: [0, 1, 2, 3] }, { text: "Você costuma ouvir gravações suas para identificar e corrigir vícios de linguagem?", pillar: "vicios", score: [0, 1, 2, 3] }, { text: "Quando pego(a) de surpresa, você consegue responder sem 'engasgar' ou hesitar muito?", pillar: "vicios", score: [0, 1, 2, 3] }, { text: "Você usa exemplos práticos ou histórias para ilustrar suas ideias?", pillar: "storytelling", score: [0, 1, 2, 3] }, { text: "Você faz perguntas (diretas ou de reflexão) para envolver quem te escuta?", pillar: "storytelling", score: [0, 1, 2, 3] }, { text: "Você consegue transformar dados ou informações 'secas' em algo mais interessante de ouvir?", pillar: "storytelling", score: [0, 1, 2, 3] }, { text: "Você percebe quando as pessoas parecem 'desligar' (mexer no celular, olhar pro lado) enquanto você fala?", pillar: "storytelling", score: [3, 2, 1, 0] }, { text: "Num debate, você espera o outro terminar de falar antes de começar a sua resposta?", pillar: "escuta", score: [0, 1, 2, 3] }, { text: "Você demonstra que está prestando atenção (acenando, contato visual, 'uhum')?", pillar: "escuta", score: [0, 1, 2, 3] }, { text: "Você consegue repetir com suas palavras o que o outro disse, para confirmar se entendeu certo?", pillar: "escuta", score: [0, 1, 2, 3] }, { text: "Você responde diretamente ao que foi perguntado, sem ficar 'dando voltas'?", pillar: "escuta", score: [0, 1, 2, 3] }, { text: "Se te pedem um resumo rápido de uma reunião longa, você consegue fazer em poucos minutos?", pillar: "sintese", score: [0, 1, 2, 3] }, { text: "As pessoas te consideram alguém que vai 'direto ao ponto'?", pillar: "sintese", score: [0, 1, 2, 3] }, { text: "Em e-mails ou mensagens de áudio, você costuma ser breve e objetivo(a)?", pillar: "sintese", score: [0, 1, 2, 3] }, { text: "Você às vezes 'enrola' um pouco antes de chegar no ponto principal do que quer dizer?", pillar: "sintese", score: [3, 2, 1, 0] }
+    ];
+    
+    const quizSection = document.getElementById("quiz-section");
+    const loadingSection = document.getElementById("loading-section"); 
+    const loadingText = document.getElementById("loading-text"); // Referência ao texto de loading
+    const leadCaptureSection = document.getElementById("lead-capture-section");
+    const resultsSection = document.getElementById("results-section");
+    const quizContent = document.getElementById("quiz-content");
+    const progressBar = document.getElementById("progress-bar");
+    const questionCounter = document.getElementById("question-counter");
+    const leadForm = document.getElementById("lead-form");
+    const nameInput = document.getElementById("name"); // Referência ao campo Nome
+    const emailInput = document.getElementById("email");
+    const submitLeadBtn = document.getElementById("submit-lead-btn");
+
+    let currentQuestionIndex = 0;
+    const pillarScores = { clareza: 0, postura: 0, voz: 0, vicios: 0, storytelling: 0, escuta: 0, sintese: 0 };
+    let finalConcept = {};
+    let finalPillarArray = [];
+    let inferredVac = { type: 'Indefinido', text: '', examples: [], icon: '' }; 
+    const answerOptionsText = ["Nunca / Raramente", "Às Vezes", "Frequentemente", "Sempre / Quase Sempre"];
+
+    function getPillarLevel(pillarId, score) {
+        const pillarInfo = pillars[pillarId];
+        if (!pillarInfo) return 'Indefinido';
+        if (pillarInfo.questions === 5) { 
+             if (score <= 6) return 'Baixo'; if (score <= 10) return 'Médio'; return 'Alto';
+        } else if (pillarInfo.questions === 4) { 
+             if (score <= 5) return 'Baixo'; if (score <= 9) return 'Médio'; return 'Alto';
+        } else { return 'Indefinido'; }
+    }
+
+    function inferVacStyle() {
+        const visualScore = pillarScores.postura || 0;
+        const auditoryScore = pillarScores.voz || 0;
+        const kinestheticScore = pillarScores.escuta || 0; 
+        const maxScore = Math.max(visualScore, auditoryScore, kinestheticScore);
+        
+        const vacData = {
+            visual: { type: 'Visual', icon: 'icon-visual.png', text: 'Sua comunicação sugere traços do estilo <strong>Visual</strong>. Pessoas com essa preferência geralmente pensam por imagens e são mais conectadas ao que veem.', examples: ['Usa expressões como "Veja bem...", "Isso parece claro?"','Gesticula bastante, como se estivesse "desenhando" no ar.','Presta atenção na aparência e na organização visual das coisas.'] },
+            auditivo: { type: 'Auditivo', icon: 'icon-auditivo.png', text: 'Sua comunicação sugere traços do estilo <strong>Auditivo</strong>. Pessoas com essa preferência processam informações ouvindo e prestando atenção às palavras e sons.', examples: ['Usa expressões como "Isso soa bem", "Ouça o que estou dizendo".','Gosta de explicações verbais detalhadas e debates.','Percebe facilmente mudanças no tom de voz das pessoas.'] },
+            cinestesico: { type: 'Cinestésico', icon: 'icon-cinestesico.png', text: 'Sua comunicação sugere traços do estilo <strong>Cinestésico</strong>. Pessoas com essa preferência se conectam através de sensações, emoções e ações práticas.', examples: ['Usa expressões como "Não consegui pegar a ideia", "Vamos sentir como funciona".','Aprende melhor "colocando a mão na massa".','Valoriza o conforto e a conexão emocional nas interações.'] }
+        };
+
+        let contenders = [];
+        const threshold = 2; 
+        if (visualScore >= maxScore) contenders.push(vacData.visual);
+        if (auditoryScore >= maxScore) contenders.push(vacData.auditivo);
+        if (kinestheticScore >= maxScore) contenders.push(vacData.cinestesico);
+
+         if (contenders.length > 1) {
+            if (visualScore > auditoryScore + threshold && visualScore > kinestheticScore + threshold) contenders = [vacData.visual];
+            else if (auditoryScore > visualScore + threshold && auditoryScore > kinestheticScore + threshold) contenders = [vacData.auditivo];
+            else if (kinestheticScore > visualScore + threshold && kinestheticScore > auditoryScore + threshold) contenders = [vacData.cinestesico];
+        }
+
+        if (contenders.length === 1) {
+            inferredVac = contenders[0];
+        } else { 
+             inferredVac.type = contenders.map(c => c.type).join(' / ') || 'Misto/Indefinido';
+             inferredVac.text = `Sua comunicação parece combinar traços dos estilos <strong>${inferredVac.type}</strong>. Você pode se adaptar bem a diferentes formas de interação ou seu estilo é equilibrado.`;
+             inferredVac.examples = [];
+             inferredVac.icon = 'icon-misto.png'; 
+        }
+    }
+
+
+    function renderQuestion(index) {
+        if (index >= questions.length) { calculateFinalResults(); showLoadingScreen(); return; }
+        if (!quizContent || !progressBar || !questionCounter) { console.error("ERRO FATAL: Elemento(s) essencial(is) do quiz não encontrado(s). Verifique os IDs no HTML."); return; }
+        const question = questions[index];
+        if (!question || !question.score) { console.error("ERRO: Objeto 'question' inválido ou sem 'score' para o índice:", index, question); return; }
+        const progressPercentage = ((index) / questions.length) * 100;
+        progressBar.style.width = `${progressPercentage}%`;
+        questionCounter.textContent = `Pergunta ${index + 1} de ${questions.length}`;
+        quizContent.innerHTML = ''; 
+        const questionTitle = document.createElement('h2'); questionTitle.textContent = question.text; quizContent.appendChild(questionTitle);
+        const optionsDiv = document.createElement('div'); optionsDiv.className = 'answer-options';
+        answerOptionsText.forEach((text, i) => {
+             if (question.score && typeof question.score[i] !== 'undefined') { 
+                 const label = document.createElement('label'); const radio = document.createElement('input'); radio.type = 'radio'; radio.name = `q${index}`; radio.value = question.score[i];
+                 const span = document.createElement('span'); span.textContent = ` ${text}`; label.appendChild(radio); label.appendChild(span); optionsDiv.appendChild(label);
+             } else { console.error("ERRO: Score indefinido para opção", i, " na pergunta:", index, question); }
+        });
+        quizContent.appendChild(optionsDiv);
+        const nextBtn = document.createElement('button'); nextBtn.className = 'action-btn next-btn'; nextBtn.textContent = 'Próxima'; nextBtn.disabled = true; quizContent.appendChild(nextBtn);
+        const labels = quizContent.querySelectorAll(".answer-options label");
+        labels.forEach(label => {
+            label.addEventListener("click", () => { labels.forEach(l => l.classList.remove("selected")); label.classList.add("selected"); if (nextBtn) { nextBtn.disabled = false; } else { console.error("ERRO: Botão 'Próxima' não encontrado ao tentar habilitar."); } });
+        });
+        if (nextBtn) { 
+            nextBtn.addEventListener("click", () => { const selectedRadio = quizContent.querySelector(`input[name="q${index}"]:checked`); if (selectedRadio) { const score = parseInt(selectedRadio.value); if (question.pillar && typeof pillarScores[question.pillar] !== 'undefined') { pillarScores[question.pillar] += score; } else { console.error("ERRO: Pilar inválido ou não encontrado na pergunta:", index, question); } currentQuestionIndex++; renderQuestion(currentQuestionIndex); } });
+        } else { console.error("ERRO: Botão 'Próxima' não encontrado para adicionar listener de clique."); }
+    }
+
+    function calculateFinalResults() { 
+        let totalScore = 0; for (const pillar in pillarScores) { totalScore += pillarScores[pillar]; }
+        if (totalScore <= 30) { finalConcept = concepts.iniciante; } else if (totalScore <= 60) { finalConcept = concepts.desenvolvimento; } else if (totalScore <= 80) { finalConcept = concepts.eficaz; } else { finalConcept = concepts.mestre; } finalConcept.totalScore = totalScore; 
+        finalPillarArray = Object.keys(pillarScores).map(key => ({ id: key, score: pillarScores[key], level: getPillarLevel(key, pillarScores[key]), attentionText: pillars[key] ? pillars[key].attention : '' }));
+        finalPillarArray.sort((a, b) => a.score - b.score);
+        inferVacStyle(); 
+    }
+
+    // --- Função showLoadingScreen Atualizada ---
+    function showLoadingScreen() { 
+        if (quizSection) quizSection.classList.add("hidden");
+        if (loadingSection) loadingSection.classList.remove("hidden"); 
+        
+        // Mostra a primeira mensagem
+        if (loadingText) loadingText.textContent = "Analisando suas respostas...";
+
+        // Após 1.5 segundos, mostra a segunda mensagem
+        setTimeout(() => {
+            if (loadingText) loadingText.textContent = "Gerando seus resultados...";
+             // Após mais 1.5 segundos (total 3s), esconde loading e mostra lead capture
+             setTimeout(() => {
+                if (loadingSection) loadingSection.classList.add("hidden"); 
+                showLeadCapture(); 
+             }, 1500); 
+        }, 1500); 
+    }
+
+    function showLeadCapture() { 
+        if (leadCaptureSection) leadCaptureSection.classList.remove("hidden");
+        else console.error("ERRO: Seção de captura de lead não encontrada!");
+    }
+    
+    // --- Função de Envio Atualizada para incluir Nome ---
+    leadForm.addEventListener("submit", async (e) => { 
+        e.preventDefault(); 
+        if (submitLeadBtn) { submitLeadBtn.disabled = true; submitLeadBtn.textContent = "Enviando..."; }
+        
+        const name = nameInput ? nameInput.value : null; // Pega o nome
+        const email = emailInput ? emailInput.value : null;
+        
+        if (!name || !email) { // Verifica ambos
+            console.error("ERRO: Nome ou E-mail não preenchido(s)."); 
+            if (submitLeadBtn) { submitLeadBtn.disabled = false; submitLeadBtn.textContent = "Ver Meu Resultado"; } 
+            // Adicionar feedback visual para o usuário aqui, se desejar
+            alert("Por favor, preencha seu nome e e-mail.");
+            return; 
+        }
+        
+        // Adiciona 'nome' ao dataToSend
+        const dataToSend = { 
+            "nome": name, // <<< NOVO
+            "e-mail": email, 
+            "conceito": finalConcept.level, "scoreTotal": finalConcept.totalScore, "scoreClareza": pillarScores.clareza, "scorePostura": pillarScores.postura, "scoreVoz": pillarScores.voz, "scoreVicios": pillarScores.vicios, "scoreStorytelling": pillarScores.storytelling, "scoreEscuta": pillarScores.escuta, "scoreSintese": pillarScores.sintese 
+        };
+
+        try {
+             if (typeof fbq === 'function') { fbq('track', 'Lead'); } 
+             else { console.log("Função fbq não encontrada ao tentar disparar Lead."); }
+            await fetch(MAKE_WEBHOOK_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dataToSend) });
+            showResultsPage();
+        } catch (error) { console.error("ERRO M: Erro durante o envio (Make ou Pixel):", error); showResultsPage(); }
+    });
+
+    function showResultsPage() {
+        if (leadCaptureSection) leadCaptureSection.classList.add("hidden");
+        if (resultsSection) resultsSection.classList.remove("hidden");
+        else { console.error("ERRO: Seção de resultados não encontrada!"); return; }
+
+        const resultConceptEl = document.getElementById("result-concept");
+        const resultTextEl = document.getElementById("result-text");
+        const pillarListEl = document.getElementById("pillar-levels"); 
+        const vacIconEl = document.getElementById("vac-icon"); 
+        const vacTextEl = document.getElementById("vac-text");         
+        const vacExamplesEl = document.getElementById("vac-examples"); 
+
+        if (resultConceptEl && resultTextEl && pillarListEl && vacIconEl && vacTextEl && vacExamplesEl && finalPillarArray.length === 7) {
+            resultConceptEl.textContent = finalConcept.level || 'N/A';
+            resultTextEl.textContent = finalConcept.text || 'N/A';
+
+            pillarListEl.innerHTML = ''; 
+            const sortedPillarsForDisplay = [...finalPillarArray].sort((a, b) => {
+                const nameA = pillars[a.id] ? pillars[a.id].name : a.id;
+                const nameB = pillars[b.id] ? pillars[b.id].name : b.id;
+                return nameA.localeCompare(nameB);
+            }); 
+            
+            sortedPillarsForDisplay.forEach(pillar => {
+                 const li = document.createElement('li');
+                 const levelClass = `level-${pillar.level?.toLowerCase() || 'indefinido'}`; 
+                 const pillarName = pillars[pillar.id] ? pillars[pillar.id].name : pillar.id;
+                 li.innerHTML = `<strong>${pillarName}:</strong> <span class="${levelClass}">${pillar.level || 'N/A'}</span>`;
+                 pillarListEl.appendChild(li);
+            });
+
+            vacIconEl.alt = `Ícone ${inferredVac.type || 'Estilo'}`; 
+             if (inferredVac.icon && inferredVac.icon !== '') { 
+                 vacIconEl.src = inferredVac.icon; 
+                 vacIconEl.style.display = 'block'; 
+             } else {
+                 vacIconEl.style.display = 'none'; 
+             }
+
+            vacTextEl.innerHTML = inferredVac.text || 'Não foi possível determinar seu estilo predominante.';
+            vacExamplesEl.innerHTML = ''; 
+            if (inferredVac.examples && inferredVac.examples.length > 0) {
+                 inferredVac.examples.forEach(example => {
+                      const li = document.createElement('li');
+                      li.textContent = example;
+                      vacExamplesEl.appendChild(li);
+                 });
+            }
+
+        } else {
+             console.error("ERRO: Elemento(s) da página de resultados não encontrado(s) ou dados insuficientes.");
+             if(pillarListEl) pillarListEl.innerHTML = '<li>Erro ao carregar os níveis dos pilares.</li>'; 
+             if(vacTextEl) vacTextEl.innerHTML = 'Erro ao carregar seu estilo de comunicação.';
+        }
+    }
+
+    try {
+        if (questions && questions.length > 0) {
+           renderQuestion(currentQuestionIndex);
+        } else {
+           console.error("ERRO FATAL: Array 'questions' está vazio ou indefinido.");
+            if(quizContent) {
+                quizContent.innerHTML = '<h2>Ocorreu um erro ao carregar as perguntas. Tente recarregar a página.</h2>';
+            }
+        }
+    } catch (error) {
+        console.error("ERRO FATAL Q: Erro ao iniciar o quiz:", error);
+        if(quizContent) {
+            quizContent.innerHTML = '<h2>Ocorreu um erro ao carregar o quiz. Tente recarregar a página.</h2>';
+        }
+    }
+});
+</script>
+
+</body>
+</html>
