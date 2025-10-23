@@ -1,344 +1,344 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1303934443348126');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1303934443348126&ev=PageView&noscript=1"
+/></noscript>
+<title>Diagnóstico em Comunicação e Oratória</title>
+
+<style>
+:root {
+    --accent-blue: #007aff;
+    --accent-green: #28a745;
+    --bg-page: #f5f5f7;
+    --bg-container: #ffffff;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --border-color: #d2d2d7;
+    --border-radius-container: 16px;
+    --border-radius-element: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-page); color: var(--text-primary); display: flex;
+    justify-content: center; align-items: flex-start; min-height: 100vh; padding-top: 2rem;
+}
+.container {
+    width: 90%; max-width: 600px; background-color: var(--bg-container);
+    border-radius: var(--border-radius-container); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem; margin-bottom: 2rem;
+}
+h1, h2, h3, h4 { line-height: 1.3; }
+h1 { font-size: 1.65rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; min-height: 5em; }
+h3 { font-size: 1.5rem; font-weight: 600; color: var(--accent-blue); margin-bottom: 0.5rem; }
+p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem; }
+.hidden { display: none !important; }
+.logo-header { text-align: center; margin-bottom: 0.5rem; padding-bottom: 0.5rem; }
+.logo-header img { max-width: 250px; height: auto; display: block; margin: 0 auto; }
+
+.subtitle, .authority-note { text-align: center; color: var(--text-secondary); margin-bottom: 1rem; }
+.subtitle { font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.4; }
+.authority-note { font-size: 0.85rem; color: #999; margin-top: -0.2rem; margin-bottom: 2rem; }
+
+#progress-bar-container { width: 100%; background-color: #eef0f2; border-radius: 5px; height: 8px; margin-bottom: 2rem; overflow: hidden; }
+#progress-bar { width: 0%; height: 100%; background-color: var(--accent-blue); border-radius: 5px; transition: width 0.3s ease-out; }
+#question-counter { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 0.5rem; }
+.answer-options { display: flex; flex-direction: column; gap: 0.75rem; }
+.answer-options label { display: block; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-element); cursor: pointer; transition: all 0.2s ease; font-weight: 500; }
+.answer-options label:hover { background-color: #f9f9f9; }
+.answer-options input[type="radio"] { display: none; }
+.answer-options label.selected { border-color: var(--accent-blue); background-color: #f0f8ff; color: #0056b3; font-weight: 600; }
+.action-btn { width: 100%; padding: 1rem; font-size: 1rem; font-weight: 600; color: #fff; background-color: var(--accent-blue); border: none; border-radius: var(--border-radius-element); cursor: pointer; margin-top: 2rem; transition: background-color 0.2s ease; }
+.action-btn:disabled { background-color: #c7c7cc; cursor: not-allowed; }
+.action-btn:hover:not(:disabled) { background-color: #0056b3; }
+#lead-capture-section h2 { font-size: 1.5rem; font-weight: 700; text-align: center; min-height: 0; margin-bottom: 0.5rem; }
+#lead-capture-section p { text-align: center; margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
+.form-group input[type="email"] { width: 100%; padding: 0.9rem; font-size: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-element); }
+.form-group input[type="email"]:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 2px rgba(0,122,255,0.2); }
+#results-section h2 { font-size: 1.5rem; font-weight: 700; text-align: center; min-height: 0; margin-bottom: 1.5rem; }
+#attention-points { list-style: none; margin: 1.5rem 0; }
+#attention-points li { background-color: #fff8e1; border-left: 4px solid #ffc107; padding: 1rem; margin-bottom: 0.75rem; font-weight: 500; color: #665200; }
+.cta-box { background-color: var(--bg-page); border-radius: 12px; padding: 2rem; text-align: center; margin-top: 2rem; }
+.cta-box h3 { color: var(--text-primary); }
+.cta-box p { color: var(--text-secondary); }
+.price { margin: 1rem 0; }
+.price .old-price { text-decoration: line-through; color: #999; font-size: 1rem; }
+.price .new-price { font-size: 1.75rem; font-weight: 700; color: var(--accent-green); margin-left: 0.5rem; }
+.cta-button { display: inline-block; width: 100%; padding: 1rem; background-color: var(--accent-green); color: white; text-decoration: none; font-weight: 600; border-radius: var(--border-radius-element); margin-top: 1rem; transition: background-color 0.2s; }
+.cta-button:hover { background-color: #218838; }
+#loading-section { text-align: center; padding: 4rem 0; }
+.spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent-blue); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+#loading-section p { font-weight: 500; color: var(--text-secondary); margin-top: 1rem; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+@media (max-width: 600px) {
+    body { padding-top: 0; }
+    .container { width: 100%; margin: 0; padding: 1.5rem; border-radius: 0; box-shadow: none; min-height: 100vh; }
+    h1 { font-size: 1.6rem; padding-top: 1rem; margin-bottom: 0.5rem; }
     
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1303934443348126');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1303934443348126&ev=PageView&noscript=1"
-    /></noscript>
-    <title>Diagnóstico em Comunicação e Oratória</title>
-
-    <style>
-        :root {
-            --accent-blue: #007aff;
-            --accent-green: #28a745;
-            --bg-page: #f5f5f7;
-            --bg-container: #ffffff;
-            --text-primary: #1d1d1f;
-            --text-secondary: #6e6e73;
-            --border-color: #d2d2d7;
-            --border-radius-container: 16px;
-            --border-radius-element: 10px;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg-page); color: var(--text-primary); display: flex;
-            justify-content: center; align-items: flex-start; min-height: 100vh; padding-top: 2rem;
-        }
-        .container {
-            width: 90%; max-width: 600px; background-color: var(--bg-container);
-            border-radius: var(--border-radius-container); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            padding: 2.5rem; margin-bottom: 2rem;
-        }
-        h1, h2, h3, h4 { line-height: 1.3; }
-        h1 { font-size: 1.65rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
-        h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; min-height: 5em; }
-        h3 { font-size: 1.5rem; font-weight: 600; color: var(--accent-blue); margin-bottom: 0.5rem; }
-        p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem; }
-        .hidden { display: none !important; }
-        .logo-header { text-align: center; margin-bottom: 0.5rem; padding-bottom: 0.5rem; }
-        .logo-header img { max-width: 250px; height: auto; display: block; margin: 0 auto; }
-        
-        .subtitle, .authority-note { text-align: center; color: var(--text-secondary); margin-bottom: 1rem; }
-        .subtitle { font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.4; }
-        .authority-note { font-size: 0.85rem; color: #999; margin-top: -0.2rem; margin-bottom: 2rem; }
-        
-        #progress-bar-container { width: 100%; background-color: #eef0f2; border-radius: 5px; height: 8px; margin-bottom: 2rem; overflow: hidden; }
-        #progress-bar { width: 0%; height: 100%; background-color: var(--accent-blue); border-radius: 5px; transition: width 0.3s ease-out; }
-        #question-counter { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 0.5rem; }
-        .answer-options { display: flex; flex-direction: column; gap: 0.75rem; }
-        .answer-options label { display: block; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-element); cursor: pointer; transition: all 0.2s ease; font-weight: 500; }
-        .answer-options label:hover { background-color: #f9f9f9; }
-        .answer-options input[type="radio"] { display: none; }
-        .answer-options label.selected { border-color: var(--accent-blue); background-color: #f0f8ff; color: #0056b3; font-weight: 600; }
-        .action-btn { width: 100%; padding: 1rem; font-size: 1rem; font-weight: 600; color: #fff; background-color: var(--accent-blue); border: none; border-radius: var(--border-radius-element); cursor: pointer; margin-top: 2rem; transition: background-color 0.2s ease; }
-        .action-btn:disabled { background-color: #c7c7cc; cursor: not-allowed; }
-        .action-btn:hover:not(:disabled) { background-color: #0056b3; }
-        #lead-capture-section h2 { font-size: 1.5rem; font-weight: 700; text-align: center; min-height: 0; margin-bottom: 0.5rem; }
-        #lead-capture-section p { text-align: center; margin-bottom: 1.5rem; }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
-        .form-group input[type="email"] { width: 100%; padding: 0.9rem; font-size: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-element); }
-        .form-group input[type="email"]:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 2px rgba(0,122,255,0.2); }
-        #results-section h2 { font-size: 1.5rem; font-weight: 700; text-align: center; min-height: 0; margin-bottom: 1.5rem; }
-        #attention-points { list-style: none; margin: 1.5rem 0; }
-        #attention-points li { background-color: #fff8e1; border-left: 4px solid #ffc107; padding: 1rem; margin-bottom: 0.75rem; font-weight: 500; color: #665200; }
-        .cta-box { background-color: var(--bg-page); border-radius: 12px; padding: 2rem; text-align: center; margin-top: 2rem; }
-        .cta-box h3 { color: var(--text-primary); }
-        .cta-box p { color: var(--text-secondary); }
-        .price { margin: 1rem 0; }
-        .price .old-price { text-decoration: line-through; color: #999; font-size: 1rem; }
-        .price .new-price { font-size: 1.75rem; font-weight: 700; color: var(--accent-green); margin-left: 0.5rem; }
-        .cta-button { display: inline-block; width: 100%; padding: 1rem; background-color: var(--accent-green); color: white; text-decoration: none; font-weight: 600; border-radius: var(--border-radius-element); margin-top: 1rem; transition: background-color 0.2s; }
-        .cta-button:hover { background-color: #218838; }
-        #loading-section { text-align: center; padding: 4rem 0; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent-blue); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
-        #loading-section p { font-weight: 500; color: var(--text-secondary); margin-top: 1rem; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        @media (max-width: 600px) {
-            body { padding-top: 0; }
-            .container { width: 100%; margin: 0; padding: 1.5rem; border-radius: 0; box-shadow: none; min-height: 100vh; }
-            h1 { font-size: 1.6rem; padding-top: 1rem; margin-bottom: 0.5rem; }
-            
-            .subtitle { font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.4; margin-bottom: 0.8rem; }
-            .authority-note { font-size: 0.8rem; margin-top: 0; margin-bottom: 1.5rem; } 
-            
-            h2 { font-size: 1.25rem; min-height: 6em; }
-            .logo-header { padding-top: 1rem; margin-bottom: 0.5rem; padding-bottom: 0.5rem; }
-            .logo-header img { max-width: 180px; }
-            .answer-options label { padding: 0.9rem; }
-            .cta-box { padding: 1.5rem; }
-        }
-    </style>
+    .subtitle { font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.4; margin-bottom: 0.8rem; }
+    .authority-note { font-size: 0.8rem; margin-top: 0; margin-bottom: 1.5rem; } 
+    
+    h2 { font-size: 1.25rem; min-height: 6em; }
+    .logo-header { padding-top: 1rem; margin-bottom: 0.5rem; padding-bottom: 0.5rem; }
+    .logo-header img { max-width: 180px; }
+    .answer-options label { padding: 0.9rem; }
+    .cta-box { padding: 1.5rem; }
+}
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="logo-header">
-            <img src="logo-leaders-academy-black.png" alt="Leader's Academy Logo">
-        </div>
-
-        <section id="quiz-section">
-            <h1>Diagnóstico em Comunicação e Oratória</h1>
-            <p class="subtitle">Entenda seus pontos fortes e fracos para se comunicar com mais impacto.<br>Descubra seu nível em aproximadamente 3-5 minutos.</p>
-            <p class="authority-note">Já ajudamos mais de 300 pessoas a melhorarem sua comunicação e oratória.</p>
-            
-            <div id="progress-bar-container">
-                <div id="progress-bar"></div>
-            </div>
-            <div id="question-counter">Pergunta 1 de 30</div>
-            
-            <div id="quiz-content">
-                <h2>Carregando pergunta...</h2>
-                <div class="answer-options"></div>
-                <button class="action-btn next-btn" disabled>Próxima</button>
-            </div>
-        </section>
-
-        <section id="loading-section" class="hidden">
-            <div class="spinner"></div>
-            <p>Analisando suas respostas...</p>
-        </section>
-
-        <section id="lead-capture-section" class="hidden">
-            <h2>Seu diagnóstico está sendo calculado!</h2>
-            <p>Informe seu e-mail para receber o resultado detalhado:</p>
-            
-            <form id="lead-form">
-                <div class="form-group">
-                    <label for="email">Seu melhor e-mail:</label>
-                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
-                </div>
-                <button type="submit" id="submit-lead-btn" class="action-btn">Ver Meu Resultado</button>
-            </form>
-        </section>
-
-
-        <section id="results-section" class="hidden">
-            <h2>Seu Resultado Gratuito</h2>
-            <h3 id="result-concept"></h3>
-            <p id="result-text"></p>
-            
-            <h4>Pontos de Atenção (Pilares com menor pontuação):</h4>
-            <ul id="attention-points"></ul>
-            
-            <hr>
-            
-            <div class="cta-box">
-                <h3>Quer o Diagnóstico Completo?</h3>
-                <p>Receba o "Relatório Completo em PDF" com o diagnóstico detalhado para TODOS os 7 pilares, entendendo exatamente *o que* precisa ser melhorado.</p>
-                <p class="price">
-                    De <span class="old-price">R$49,90</span> por apenas
-                    <span class="new-price">R$9,90</span>
-                </p>
-                
-                <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button">
-                    QUERO MEU RELATÓRIO COMPLETO AGORA
-                </a>
-            </div>
-        </section>
+<div class="container">
+    <div class="logo-header">
+        <img src="logo-leaders-academy-black.png" alt="Leader's Academy Logo">
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+    <section id="quiz-section">
+        <h1>Diagnóstico em Comunicação e Oratória</h1>
+        <p class="subtitle">Entenda seus pontos fortes e fracos para se comunicar com mais impacto.<br>Descubra seu nível em aproximadamente 3-5 minutos.</p>
+        <p class="authority-note">Já ajudamos mais de 300 pessoas a melhorarem sua comunicação e oratória.</p>
+        
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="question-counter">Pergunta 1 de 30</div>
+        
+        <div id="quiz-content">
+            <h2>Carregando pergunta...</h2>
+            <div class="answer-options"></div>
+            <button class="action-btn next-btn" disabled>Próxima</button>
+        </div>
+    </section>
+
+    <section id="loading-section" class="hidden">
+        <div class="spinner"></div>
+        <p>Analisando suas respostas...</p>
+    </section>
+
+    <section id="lead-capture-section" class="hidden">
+        <h2>Seu diagnóstico está sendo calculado!</h2>
+        <p>Informe seu e-mail para receber o resultado detalhado:</p>
+        
+        <form id="lead-form">
+            <div class="form-group">
+                <label for="email">Seu melhor e-mail:</label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+            <button type="submit" id="submit-lead-btn" class="action-btn">Ver Meu Resultado</button>
+        </form>
+    </section>
+
+
+    <section id="results-section" class="hidden">
+        <h2>Seu Resultado Gratuito</h2>
+        <h3 id="result-concept"></h3>
+        <p id="result-text"></p>
+        
+        <h4>Pontos de Atenção (Pilares com menor pontuação):</h4>
+        <ul id="attention-points"></ul>
+        
+        <hr>
+        
+        <div class="cta-box">
+            <h3>Quer o Diagnóstico Completo?</h3>
+            <p>Receba o "Relatório Completo em PDF" com o diagnóstico detalhado para TODOS os 7 pilares, entendendo exatamente *o que* precisa ser melhorado.</p>
+            <p class="price">
+                De <span class="old-price">R$49,90</span> por apenas
+                <span class="new-price">R$9,90</span>
+            </p>
             
-            // --- 0. URL DO MAKE.COM (ATUALIZADA COM SUA URL) ---
-            const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/ter8xjf4mb2aadw3ok68dkr4xbb8ta1a"; 
-            
-            
-            // --- 1. CONFIGURAÇÃO DO QUIZ ---
+            <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button">
+                QUERO MEU RELATÓRIO COMPLETO AGORA
+            </a>
+        </div>
+    </section>
+</div>
 
-            const concepts = {
-                iniciante: { level: "Comunicador Iniciante", text: "Você tem uma base sólida, mas grandes oportunidades de melhoria. A comunicação é uma habilidade que pode ser totalmente desenvolvida, e seu primeiro passo (fazer este teste) já foi dado." },
-                desenvolvimento: { level: "Comunicador em Desenvolvimento", text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências. O foco agora é polir suas técnicas." },
-                eficaz: { level: "Comunicador Eficaz", text: "Você se comunica de forma clara e eficiente. O próximo nível é transformar sua comunicação em uma ferramenta de alta persuasão." },
-                mestre: { level: "Comunicador Mestre", text: "Parabéns! Você tem um domínio avançado da comunicação e oratória. Sua habilidade de se conectar, engajar e persuadir é clara." }
-            };
-            const pillars = {
-                clareza: { name: "Clareza e Objetividade", attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria. Mensagens confusas podem diluir seu impacto." },
-                postura: { name: "Linguagem Corporal e Postura", attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante do que suas palavras." },
-                voz: { name: "Variedade Vocal e Dicção", attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode fazer a melhor das mensagens parecer desinteressante." },
-                vicios: { name: "Controle de Vícios de Linguagem", attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem e tirando sua autoridade." },
-                storytelling: { name: "Storytelling e Engajamento", attention: "Para realmente conectar, explore o <strong>Storytelling</strong>. Dados informam, mas histórias emocionam e são lembradas." },
-                escuta: { name: "Escuta Ativa e Interação", attention: "A comunicação é uma via de mão dupla. Desenvolver sua <strong>Escuta Ativa</strong> pode ser o atalho para uma comunicação mais eficaz." },
-                sintese: { name: "Poder de Síntese", attention: "Seu tempo (e o dos outros) é valioso. Aprimorar seu <strong>Poder de Síntese</strong> fará suas ideias serem ouvidas." }
-            };
-            const questions = [
-                { text: "As pessoas costumam entender minhas instruções de primeira?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu organizo meus pensamentos (início, meio e fim) antes de falar algo importante?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu consigo explicar um conceito complexo usando termos simples?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "As pessoas pedem para eu repetir o que eu disse?", pillar: "clareza", score: [3, 2, 1, 0] },{ text: "Eu evito jargões técnicos ao falar com quem não é da minha área?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu mantenho contato visual com minha audiência?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu gesticulo com as mãos de forma natural para enfatizar minhas palavras?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minha postura é ereta e aberta (evitando braços cruzados)?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minhas expressões faciais correspondem à emoção da minha mensagem?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu me sinto 'travado' com meu corpo ao falar em público?", pillar: "postura", score: [3, 2, 1, 0] },{ text: "Eu altero o tom e o volume da minha voz para evitar monotonia?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu falo em um ritmo (velocidade) que é fácil de acompanhar?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "As pessoas comentam que minha voz é clara e fácil de ouvir?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu pratico exercícios de aquecimento vocal antes de apresentações?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu me pego usando 'né', 'tipo', 'ãhn', 'então...' repetidamente?", pillar: "vicios", score: [3, 2, 1, 0] },{ text: "Eu consigo fazer pausas em silêncio (sem preenchê-las com ruídos)?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu reviso gravações minhas para identificar e reduzir vícios?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Ao ser pego de surpresa, consigo responder sem 'engasgar'?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu uso exemplos práticos ou histórias pessoais para ilustrar meus pontos?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu faço perguntas retóricas ou diretas para envolver quem me ouve?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu consigo transformar dados 'chatos' em uma narrativa interessante?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu percebo que as pessoas 'desconectam' quando eu falo por muito tempo?", pillar: "storytelling", score: [3, 2, 1, 0] },{ text: "Eu espero a outra pessoa concluir o raciocínio antes de formular minha resposta?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu demonstro que estou ouvindo (acenando com a cabeça, etc)?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu consigo parafrasear o que a outra pessoa disse para confirmar meu entendimento?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu respondo exatamente ao que foi perguntado, sem 'dar voltas'?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Se me pedem para resumir uma reunião de 1 hora, consigo fazê-lo em 2 minutos?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu sou conhecido por ir 'direto ao ponto'?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Em e-mails ou mensagens de áudio, sou breve e objetivo?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu 'enrolo' para chegar na conclusão principal?", pillar: "sintese", score: [3, 2, 1, 0] }
-            ];
-            
-            const quizSection = document.getElementById("quiz-section");
-            const loadingSection = document.getElementById("loading-section"); 
-            const leadCaptureSection = document.getElementById("lead-capture-section");
-            const resultsSection = document.getElementById("results-section");
-            const quizContent = document.getElementById("quiz-content");
-            const progressBar = document.getElementById("progress-bar");
-            const questionCounter = document.getElementById("question-counter");
-            const leadForm = document.getElementById("lead-form");
-            const submitLeadBtn = document.getElementById("submit-lead-btn");
-            const emailInput = document.getElementById("email");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- 0. URL DO MAKE.COM (ATUALIZADA COM SUA URL) ---
+    const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/ter8xjf4mb2aadw3ok68dkr4xbb8ta1a"; 
+    
+    
+    // --- 1. CONFIGURAÇÃO DO QUIZ ---
 
-            let currentQuestionIndex = 0;
-            const pillarScores = { clareza: 0, postura: 0, voz: 0, vicios: 0, storytelling: 0, escuta: 0, sintese: 0 };
-            let finalConcept = {};
-            let finalPillarArray = [];
-            const answerOptionsText = ["Nunca / Raramente", "Às Vezes", "Frequentemente", "Sempre / Quase Sempre"];
+    const concepts = {
+        iniciante: { level: "Comunicador Iniciante", text: "Você tem uma base sólida, mas grandes oportunidades de melhoria. A comunicação é uma habilidade que pode ser totalmente desenvolvida, e seu primeiro passo (fazer este teste) já foi dado." },
+        desenvolvimento: { level: "Comunicador em Desenvolvimento", text: "Você já demonstra diversas habilidades de comunicação, mas pode sofrer com inconsistências. O foco agora é polir suas técnicas." },
+        eficaz: { level: "Comunicador Eficaz", text: "Você se comunica de forma clara e eficiente. O próximo nível é transformar sua comunicação em uma ferramenta de alta persuasão." },
+        mestre: { level: "Comunicador Mestre", text: "Parabéns! Você tem um domínio avançado da comunicação e oratória. Sua habilidade de se conectar, engajar e persuadir é clara." }
+    };
+    const pillars = {
+        clareza: { name: "Clareza e Objetividade", attention: "Sua pontuação sugere que sua <strong>Clareza</strong> pode ser um ponto de melhoria. Mensagens confusas podem diluir seu impacto." },
+        postura: { name: "Linguagem Corporal e Postura", attention: "Observe sua <strong>Linguagem Corporal</strong>. Muitas vezes, o que seu corpo diz é mais importante do que suas palavras." },
+        voz: { name: "Variedade Vocal e Dicção", attention: "Atenção à sua <strong>Voz e Dicção</strong>. Uma voz monótona pode fazer a melhor das mensagens parecer desinteressante." },
+        vicios: { name: "Controle de Vícios de Linguagem", attention: "Seus resultados indicam que <strong>Vícios de Linguagem</strong> podem estar poluindo sua mensagem e tirando sua autoridade." },
+        storytelling: { name: "Storytelling e Engajamento", attention: "Para realmente conectar, explore o <strong>Storytelling</strong>. Dados informam, mas histórias emocionam e são lembradas." },
+        escuta: { name: "Escuta Ativa e Interação", attention: "A comunicação é uma via de mão dupla. Desenvolver sua <strong>Escuta Ativa</strong> pode ser o atalho para uma comunicação mais eficaz." },
+        sintese: { name: "Poder de Síntese", attention: "Seu tempo (e o dos outros) é valioso. Aprimorar seu <strong>Poder de Síntese</strong> fará suas ideias serem ouvidas." }
+    };
+    const questions = [
+        { text: "As pessoas costumam entender minhas instruções de primeira?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu organizo meus pensamentos (início, meio e fim) antes de falar algo importante?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu consigo explicar um conceito complexo usando termos simples?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "As pessoas pedem para eu repetir o que eu disse?", pillar: "clareza", score: [3, 2, 1, 0] },{ text: "Eu evito jargões técnicos ao falar com quem não é da minha área?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu mantenho contato visual com minha audiência?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu gesticulo com as mãos de forma natural para enfatizar minhas palavras?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minha postura é ereta e aberta (evitando braços cruzados)?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minhas expressões faciais correspondem à emoção da minha mensagem?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu me sinto 'travado' com meu corpo ao falar em público?", pillar: "postura", score: [3, 2, 1, 0] },{ text: "Eu altero o tom e o volume da minha voz para evitar monotonia?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu falo em um ritmo (velocidade) que é fácil de acompanhar?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "As pessoas comentam que minha voz é clara e fácil de ouvir?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu pratico exercícios de aquecimento vocal antes de apresentações?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu me pego usando 'né', 'tipo', 'ãhn', 'então...' repetidamente?", pillar: "vicios", score: [3, 2, 1, 0] },{ text: "Eu consigo fazer pausas em silêncio (sem preenchê-las com ruídos)?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu reviso gravações minhas para identificar e reduzir vícios?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Ao ser pego de surpresa, consigo responder sem 'engasgar'?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu uso exemplos práticos ou histórias pessoais para ilustrar meus pontos?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu faço perguntas retóricas ou diretas para envolver quem me ouve?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu consigo transformar dados 'chatos' em uma narrativa interessante?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu percebo que as pessoas 'desconectam' quando eu falo por muito tempo?", pillar: "storytelling", score: [3, 2, 1, 0] },{ text: "Eu espero a outra pessoa concluir o raciocínio antes de formular minha resposta?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu demonstro que estou ouvindo (acenando com a cabeça, etc)?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu consigo parafrasear o que a outra pessoa disse para confirmar meu entendimento?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu respondo exatamente ao que foi perguntado, sem 'dar voltas'?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Se me pedem para resumir uma reunião de 1 hora, consigo fazê-lo em 2 minutos?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu sou conhecido por ir 'direto ao ponto'?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Em e-mails ou mensagens de áudio, sou breve e objetivo?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu 'enrolo' para chegar na conclusão principal?", pillar: "sintese", score: [3, 2, 1, 0] }
+    ];
+    
+    const quizSection = document.getElementById("quiz-section");
+    const loadingSection = document.getElementById("loading-section"); 
+    const leadCaptureSection = document.getElementById("lead-capture-section");
+    const resultsSection = document.getElementById("results-section");
+    const quizContent = document.getElementById("quiz-content");
+    const progressBar = document.getElementById("progress-bar");
+    const questionCounter = document.getElementById("question-counter");
+    const leadForm = document.getElementById("lead-form");
+    const submitLeadBtn = document.getElementById("submit-lead-btn");
+    const emailInput = document.getElementById("email");
 
-            function renderQuestion(index) {
-                if (index >= questions.length) {
-                    calculateFinalResults(); 
-                    showLoadingScreen();     
-                    return;
-                }
+    let currentQuestionIndex = 0;
+    const pillarScores = { clareza: 0, postura: 0, voz: 0, vicios: 0, storytelling: 0, escuta: 0, sintese: 0 };
+    let finalConcept = {};
+    let finalPillarArray = [];
+    const answerOptionsText = ["Nunca / Raramente", "Às Vezes", "Frequentemente", "Sempre / Quase Sempre"];
 
-                const question = questions[index];
-                const progressPercentage = ((index) / questions.length) * 100;
+    function renderQuestion(index) {
+        if (index >= questions.length) {
+            calculateFinalResults(); 
+            showLoadingScreen();     
+            return;
+        }
 
-                progressBar.style.width = `${progressPercentage}%`;
-                questionCounter.textContent = `Pergunta ${index + 1} de ${questions.length}`;
+        const question = questions[index];
+        const progressPercentage = ((index) / questions.length) * 100;
 
-                quizContent.innerHTML = ''; 
-                const questionTitle = document.createElement('h2');
-                questionTitle.textContent = question.text;
-                quizContent.appendChild(questionTitle);
+        progressBar.style.width = `${progressPercentage}%`;
+        questionCounter.textContent = `Pergunta ${index + 1} de ${questions.length}`;
 
-                const optionsDiv = document.createElement('div');
-                optionsDiv.className = 'answer-options';
+        quizContent.innerHTML = ''; 
+        const questionTitle = document.createElement('h2');
+        questionTitle.textContent = question.text;
+        quizContent.appendChild(questionTitle);
 
-                answerOptionsText.forEach((text, i) => {
-                    const label = document.createElement('label');
-                    const radio = document.createElement('input');
-                    radio.type = 'radio'; radio.name = `q${index}`; radio.value = question.score[i];
-                    const span = document.createElement('span');
-                    span.textContent = ` ${text}`;
-                    label.appendChild(radio); label.appendChild(span); optionsDiv.appendChild(label);
-                });
-                quizContent.appendChild(optionsDiv);
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'answer-options';
 
-                const nextBtn = document.createElement('button');
-                nextBtn.className = 'action-btn next-btn'; nextBtn.textContent = 'Próxima'; nextBtn.disabled = true;
-                quizContent.appendChild(nextBtn);
-
-                const labels = quizContent.querySelectorAll(".answer-options label");
-                labels.forEach(label => {
-                    label.addEventListener("click", () => {
-                        labels.forEach(l => l.classList.remove("selected"));
-                        label.classList.add("selected");
-                        nextBtn.disabled = false;
-                    });
-                });
-
-                nextBtn.addEventListener("click", () => {
-                    const selectedRadio = quizContent.querySelector(`input[name="q${index}"]:checked`);
-                    if (selectedRadio) {
-                        const score = parseInt(selectedRadio.value);
-                        pillarScores[question.pillar] += score;
-                        currentQuestionIndex++;
-                        renderQuestion(currentQuestionIndex);
-                    }
-                });
-            }
-
-            function calculateFinalResults() {
-                let totalScore = 0;
-                for (const pillar in pillarScores) { totalScore += pillarScores[pillar]; }
-
-                if (totalScore <= 30) { finalConcept = concepts.iniciante; } 
-                else if (totalScore <= 60) { finalConcept = concepts.desenvolvimento; } 
-                else if (totalScore <= 80) { finalConcept = concepts.eficaz; } 
-                else { finalConcept = concepts.mestre; }
-                finalConcept.totalScore = totalScore; 
-
-                finalPillarArray = Object.keys(pillarScores).map(key => ({
-                    id: key, score: pillarScores[key], attentionText: pillars[key].attention
-                }));
-                finalPillarArray.sort((a, b) => a.score - b.score);
-            }
-
-            function showLoadingScreen() {
-                quizSection.classList.add("hidden");
-                loadingSection.classList.remove("hidden"); 
-
-                setTimeout(() => {
-                    loadingSection.classList.add("hidden"); 
-                    showLeadCapture(); 
-                }, 3000); 
-            }
-
-            function showLeadCapture() {
-                leadCaptureSection.classList.remove("hidden");
-            }
-            
-            leadForm.addEventListener("submit", async (e) => {
-                e.preventDefault(); 
-                submitLeadBtn.disabled = true; submitLeadBtn.textContent = "Enviando...";
-                const email = emailInput.value;
-                const dataToSend = { "e-mail": email, "conceito": finalConcept.level, "scoreTotal": finalConcept.totalScore, "scoreClareza": pillarScores.clareza, "scorePostura": pillarScores.postura, "scoreVoz": pillarScores.voz, "scoreVicios": pillarScores.vicios, "scoreStorytelling": pillarScores.storytelling, "scoreEscuta": pillarScores.escuta, "scoreSintese": pillarScores.sintese };
-
-                try {
-                    await fetch(MAKE_WEBHOOK_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dataToSend) });
-                    if (typeof fbq === 'function') {
-                        fbq('init', '1303934443348126', { em: email });
-                        fbq('track', 'Lead');
-                    }
-                    showResultsPage();
-                } catch (error) {
-                    console.error("Erro ao enviar lead:", error);
-                    showResultsPage(); 
-                }
-            });
-
-            function showResultsPage() {
-                leadCaptureSection.classList.add("hidden");
-                resultsSection.classList.remove("hidden");
-
-                document.getElementById("result-concept").textContent = finalConcept.level;
-                document.getElementById("result-text").textContent = finalConcept.text;
-
-                const worstPillar1 = finalPillarArray[0];
-                const worstPillar2 = finalPillarArray[1];
-                const attentionList = document.getElementById("attention-points");
-                attentionList.innerHTML = `<li>${worstPillar1.attentionText}</li><li>${worstPillar2.attentionText}</li>`;
-            }
-
-            renderQuestion(currentQuestionIndex);
+        answerOptionsText.forEach((text, i) => {
+            const label = document.createElement('label');
+            const radio = document.createElement('input');
+            radio.type = 'radio'; radio.name = `q${index}`; radio.value = question.score[i];
+            const span = document.createElement('span');
+            span.textContent = ` ${text}`;
+            label.appendChild(radio); label.appendChild(span); optionsDiv.appendChild(label);
         });
-    </script>
+        quizContent.appendChild(optionsDiv);
+
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'action-btn next-btn'; nextBtn.textContent = 'Próxima'; nextBtn.disabled = true;
+        quizContent.appendChild(nextBtn);
+
+        const labels = quizContent.querySelectorAll(".answer-options label");
+        labels.forEach(label => {
+            label.addEventListener("click", () => {
+                labels.forEach(l => l.classList.remove("selected"));
+                label.classList.add("selected");
+                nextBtn.disabled = false;
+            });
+        });
+
+        nextBtn.addEventListener("click", () => {
+            const selectedRadio = quizContent.querySelector(`input[name="q${index}"]:checked`);
+            if (selectedRadio) {
+                const score = parseInt(selectedRadio.value);
+                pillarScores[question.pillar] += score;
+                currentQuestionIndex++;
+                renderQuestion(currentQuestionIndex);
+            }
+        });
+    }
+
+    function calculateFinalResults() {
+        let totalScore = 0;
+        for (const pillar in pillarScores) { totalScore += pillarScores[pillar]; }
+
+        if (totalScore <= 30) { finalConcept = concepts.iniciante; } 
+        else if (totalScore <= 60) { finalConcept = concepts.desenvolvimento; } 
+        else if (totalScore <= 80) { finalConcept = concepts.eficaz; } 
+        else { finalConcept = concepts.mestre; }
+        finalConcept.totalScore = totalScore; 
+
+        finalPillarArray = Object.keys(pillarScores).map(key => ({
+            id: key, score: pillarScores[key], attentionText: pillars[key].attention
+        }));
+        finalPillarArray.sort((a, b) => a.score - b.score);
+    }
+
+    function showLoadingScreen() {
+        quizSection.classList.add("hidden");
+        loadingSection.classList.remove("hidden"); 
+
+        setTimeout(() => {
+            loadingSection.classList.add("hidden"); 
+            showLeadCapture(); 
+        }, 3000); 
+    }
+
+    function showLeadCapture() {
+        leadCaptureSection.classList.remove("hidden");
+    }
+    
+    leadForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); 
+        submitLeadBtn.disabled = true; submitLeadBtn.textContent = "Enviando...";
+        const email = emailInput.value;
+        const dataToSend = { "e-mail": email, "conceito": finalConcept.level, "scoreTotal": finalConcept.totalScore, "scoreClareza": pillarScores.clareza, "scorePostura": pillarScores.postura, "scoreVoz": pillarScores.voz, "scoreVicios": pillarScores.vicios, "scoreStorytelling": pillarScores.storytelling, "scoreEscuta": pillarScores.escuta, "scoreSintese": pillarScores.sintese };
+
+        try {
+            await fetch(MAKE_WEBHOOK_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dataToSend) });
+            if (typeof fbq === 'function') {
+                fbq('init', '1303934443348126', { em: email });
+                fbq('track', 'Lead');
+            }
+            showResultsPage();
+        } catch (error) {
+            console.error("Erro ao enviar lead:", error);
+            showResultsPage(); 
+        }
+    });
+
+    function showResultsPage() {
+        leadCaptureSection.classList.add("hidden");
+        resultsSection.classList.remove("hidden");
+
+        document.getElementById("result-concept").textContent = finalConcept.level;
+        document.getElementById("result-text").textContent = finalConcept.text;
+
+        const worstPillar1 = finalPillarArray[0];
+        const worstPillar2 = finalPillarArray[1];
+        const attentionList = document.getElementById("attention-points");
+        attentionList.innerHTML = `<li>${worstPillar1.attentionText}</li><li>${worstPillar2.attentionText}</li>`;
+    }
+
+    renderQuestion(currentQuestionIndex);
+});
+</script>
 
 </body>
 </html>
