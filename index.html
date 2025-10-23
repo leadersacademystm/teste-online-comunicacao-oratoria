@@ -175,7 +175,10 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
 </div>
 
 <script>
+console.log("LOG 0: Script principal iniciado."); // LOG 0
+
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("LOG A: DOMContentLoaded disparado."); // LOG A
     
     // --- 0. URL DO MAKE.COM (ATUALIZADA COM SUA URL) ---
     const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/ter8xjf4mb2aadw3ok68dkr4xbb8ta1a"; 
@@ -202,6 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
         { text: "As pessoas costumam entender minhas instruções de primeira?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu organizo meus pensamentos (início, meio e fim) antes de falar algo importante?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu consigo explicar um conceito complexo usando termos simples?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "As pessoas pedem para eu repetir o que eu disse?", pillar: "clareza", score: [3, 2, 1, 0] },{ text: "Eu evito jargões técnicos ao falar com quem não é da minha área?", pillar: "clareza", score: [0, 1, 2, 3] },{ text: "Eu mantenho contato visual com minha audiência?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu gesticulo com as mãos de forma natural para enfatizar minhas palavras?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minha postura é ereta e aberta (evitando braços cruzados)?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Minhas expressões faciais correspondem à emoção da minha mensagem?", pillar: "postura", score: [0, 1, 2, 3] },{ text: "Eu me sinto 'travado' com meu corpo ao falar em público?", pillar: "postura", score: [3, 2, 1, 0] },{ text: "Eu altero o tom e o volume da minha voz para evitar monotonia?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu falo em um ritmo (velocidade) que é fácil de acompanhar?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "As pessoas comentam que minha voz é clara e fácil de ouvir?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu pratico exercícios de aquecimento vocal antes de apresentações?", pillar: "voz", score: [0, 1, 2, 3] },{ text: "Eu me pego usando 'né', 'tipo', 'ãhn', 'então...' repetidamente?", pillar: "vicios", score: [3, 2, 1, 0] },{ text: "Eu consigo fazer pausas em silêncio (sem preenchê-las com ruídos)?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu reviso gravações minhas para identificar e reduzir vícios?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Ao ser pego de surpresa, consigo responder sem 'engasgar'?", pillar: "vicios", score: [0, 1, 2, 3] },{ text: "Eu uso exemplos práticos ou histórias pessoais para ilustrar meus pontos?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu faço perguntas retóricas ou diretas para envolver quem me ouve?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu consigo transformar dados 'chatos' em uma narrativa interessante?", pillar: "storytelling", score: [0, 1, 2, 3] },{ text: "Eu percebo que as pessoas 'desconectam' quando eu falo por muito tempo?", pillar: "storytelling", score: [3, 2, 1, 0] },{ text: "Eu espero a outra pessoa concluir o raciocínio antes de formular minha resposta?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu demonstro que estou ouvindo (acenando com a cabeça, etc)?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu consigo parafrasear o que a outra pessoa disse para confirmar meu entendimento?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Eu respondo exatamente ao que foi perguntado, sem 'dar voltas'?", pillar: "escuta", score: [0, 1, 2, 3] },{ text: "Se me pedem para resumir uma reunião de 1 hora, consigo fazê-lo em 2 minutos?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu sou conhecido por ir 'direto ao ponto'?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Em e-mails ou mensagens de áudio, sou breve e objetivo?", pillar: "sintese", score: [0, 1, 2, 3] },{ text: "Eu 'enrolo' para chegar na conclusão principal?", pillar: "sintese", score: [3, 2, 1, 0] }
     ];
     
+    // --- 2. LÓGICA DO QUIZ ---
+
     const quizSection = document.getElementById("quiz-section");
     const loadingSection = document.getElementById("loading-section"); 
     const leadCaptureSection = document.getElementById("lead-capture-section");
@@ -213,6 +218,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitLeadBtn = document.getElementById("submit-lead-btn");
     const emailInput = document.getElementById("email");
 
+    // LOG B: Verifica se os elementos principais foram encontrados
+    console.log("LOG B: Verificando elementos...");
+    console.log("  quizSection:", quizSection ? "Encontrado" : "NÃO ENCONTRADO!");
+    console.log("  quizContent:", quizContent ? "Encontrado" : "NÃO ENCONTRADO!");
+    console.log("  progressBar:", progressBar ? "Encontrado" : "NÃO ENCONTRADO!");
+    console.log("  questionCounter:", questionCounter ? "Encontrado" : "NÃO ENCONTRADO!");
+    console.log("  leadForm:", leadForm ? "Encontrado" : "NÃO ENCONTRADO!");
+
     let currentQuestionIndex = 0;
     const pillarScores = { clareza: 0, postura: 0, voz: 0, vicios: 0, storytelling: 0, escuta: 0, sintese: 0 };
     let finalConcept = {};
@@ -220,63 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const answerOptionsText = ["Nunca / Raramente", "Às Vezes", "Frequentemente", "Sempre / Quase Sempre"];
 
     function renderQuestion(index) {
-        console.log("Entrando em renderQuestion para índice:", index); // LOG 1
+        console.log("LOG 1: Entrando em renderQuestion para índice:", index); // LOG 1
 
-        if (index >= questions.length) {
-            console.log("Índice fora dos limites, calculando resultados..."); // LOG 2
-            calculateFinalResults(); 
-            showLoadingScreen();     
-            return;
-        }
-
-        const question = questions[index];
-        if (!question || !question.score) { // Verificação mais robusta
-             console.error("ERRO: Objeto 'question' inválido ou sem 'score' para o índice:", index, question); 
-             return; 
-        }
-        console.log("Pergunta carregada:", question.text); // LOG 3
-        const progressPercentage = ((index) / questions.length) * 100;
-
-        progressBar.style.width = `${progressPercentage}%`;
-        questionCounter.textContent = `Pergunta ${index + 1} de ${questions.length}`;
-
-        quizContent.innerHTML = ''; 
-        console.log("quizContent limpo."); // LOG 4
-
-        const questionTitle = document.createElement('h2');
-        questionTitle.textContent = question.text;
-        quizContent.appendChild(questionTitle);
-        console.log("Título H2 adicionado."); // LOG 5
-
-        const optionsDiv = document.createElement('div');
-        optionsDiv.className = 'answer-options';
-        console.log("Div de opções criada."); // LOG 6
-
-        answerOptionsText.forEach((text, i) => {
-             console.log("Criando opção:", i, text); // LOG 7 (dentro do loop)
-             if (question.score && typeof question.score[i] !== 'undefined') { // Verifica se score[i] existe
-                 const label = document.createElement('label');
-                 const radio = document.createElement('input');
-                 radio.type = 'radio'; radio.name = `q${index}`; radio.value = question.score[i];
-                 const span = document.createElement('span');
-                 span.textContent = ` ${text}`;
-                 label.appendChild(radio); label.appendChild(span); optionsDiv.appendChild(label);
-             } else {
-                 console.error("ERRO: Score indefinido para opção", i, " na pergunta:", index, question);
-             }
-        });
-        
-        quizContent.appendChild(optionsDiv);
-        console.log("Div de opções adicionada ao quizContent."); // LOG 8
-
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'action-btn next-btn'; nextBtn.textContent = 'Próxima'; nextBtn.disabled = true;
-        quizContent.appendChild(nextBtn);
-        console.log("Botão 'Próxima' adicionado."); // LOG 9
-
-        // Adicionando event listeners
-        console.log("Adicionando event listeners..."); // LOG 10
-        const labels = quizContent.querySelectorAll(".answer-options label");
-        labels.forEach(label => {
-            label.addEventListener("click", () => {
-                labels.forEach(l => l.classList
+        if (index >= questions.length
