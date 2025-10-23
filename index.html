@@ -73,13 +73,8 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
 #lead-capture-section p { text-align: center; margin-bottom: 1.5rem; }
 .form-group { margin-bottom: 1rem; }
 .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
-/* Input geral */
-.form-group input[type="email"], .form-group input[type="text"] {
-    width: 100%; padding: 0.9rem; font-size: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-element);
-}
-.form-group input[type="email"]:focus, .form-group input[type="text"]:focus {
-     outline: none; border-color: var(--accent-gold); box-shadow: 0 0 0 2px rgba(179, 139, 93, 0.3);
-}
+.form-group input[type="email"], .form-group input[type="text"] { width: 100%; padding: 0.9rem; font-size: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-element); }
+.form-group input[type="email"]:focus, .form-group input[type="text"]:focus { outline: none; border-color: var(--accent-gold); box-shadow: 0 0 0 2px rgba(179, 139, 93, 0.3); }
 #results-section h2 { font-size: 1.5rem; font-weight: 700; text-align: center; min-height: 0; margin-bottom: 1.5rem; }
 #pillar-levels { list-style: none; padding-left: 0; margin: 1.5rem 0; column-count: 2; column-gap: 1.5rem; }
 #pillar-levels li { background-color: #f9f9f9; border-left: 4px solid var(--border-color); padding: 0.8rem 1rem; margin-bottom: 0.75rem; font-size: 0.9rem; -webkit-column-break-inside: avoid; page-break-inside: avoid; break-inside: avoid; }
@@ -151,15 +146,14 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
 
     <section id="loading-section" class="hidden">
         <div class="spinner"></div>
-        <p id="loading-text">Analisando suas respostas...</p> {/* ID Adicionado */}
+        <p id="loading-text">Analisando suas respostas...</p>
     </section>
 
     <section id="lead-capture-section" class="hidden">
         <h2>Seu diagnóstico está sendo calculado!</h2>
-        <p>Informe seus dados para receber o resultado detalhado:</p> {/* Texto ajustado */}
+        <p>Informe seus dados para receber o resultado detalhado:</p>
         
         <form id="lead-form">
-            {/* Campo Nome Adicionado */}
             <div class="form-group">
                 <label for="name">Seu nome:</label>
                 <input type="text" id="name" name="name" required placeholder="Nome Completo">
@@ -182,7 +176,7 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
         <ul id="pillar-levels"></ul>
 
         <div id="vac-style">
-             <img id="vac-icon" src="" alt="Ícone Estilo de Comunicação">
+             <img id="vac-icon" src="" alt="Ícone Estilo de Comunicação"> {/* Tag limpa, JS preenche src */}
              <div>
                 <h4>Estilo de Comunicação Predominante (Emissor)</h4>
                 <p id="vac-text"></p>
@@ -200,7 +194,8 @@ p { font-size: 1rem; color: var(--text-secondary); line-height: 1.5; margin-bott
                 <span class="new-price">R$9,90</span>
             </p>
             
-            <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button">
+             {/* Tag limpa */}
+            <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button"> 
                 QUERO MEU RELATÓRIO COMPLETO AGORA
             </a>
         </div>
@@ -234,14 +229,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const quizSection = document.getElementById("quiz-section");
     const loadingSection = document.getElementById("loading-section"); 
-    const loadingText = document.getElementById("loading-text"); // Referência ao texto de loading
+    const loadingText = document.getElementById("loading-text"); 
     const leadCaptureSection = document.getElementById("lead-capture-section");
     const resultsSection = document.getElementById("results-section");
     const quizContent = document.getElementById("quiz-content");
     const progressBar = document.getElementById("progress-bar");
     const questionCounter = document.getElementById("question-counter");
     const leadForm = document.getElementById("lead-form");
-    const nameInput = document.getElementById("name"); // Referência ao campo Nome
+    const nameInput = document.getElementById("name"); 
     const emailInput = document.getElementById("email");
     const submitLeadBtn = document.getElementById("submit-lead-btn");
 
@@ -333,49 +328,41 @@ document.addEventListener("DOMContentLoaded", () => {
         inferVacStyle(); 
     }
 
-    // --- Função showLoadingScreen Atualizada ---
     function showLoadingScreen() { 
         if (quizSection) quizSection.classList.add("hidden");
         if (loadingSection) loadingSection.classList.remove("hidden"); 
         
-        // Mostra a primeira mensagem
         if (loadingText) loadingText.textContent = "Analisando suas respostas...";
 
-        // Após 1.5 segundos, mostra a segunda mensagem
         setTimeout(() => {
             if (loadingText) loadingText.textContent = "Gerando seus resultados...";
-             // Após mais 1.5 segundos (total 3s), esconde loading e mostra lead capture
              setTimeout(() => {
                 if (loadingSection) loadingSection.classList.add("hidden"); 
                 showLeadCapture(); 
              }, 1500); 
         }, 1500); 
     }
-
     function showLeadCapture() { 
         if (leadCaptureSection) leadCaptureSection.classList.remove("hidden");
         else console.error("ERRO: Seção de captura de lead não encontrada!");
     }
     
-    // --- Função de Envio Atualizada para incluir Nome ---
     leadForm.addEventListener("submit", async (e) => { 
         e.preventDefault(); 
         if (submitLeadBtn) { submitLeadBtn.disabled = true; submitLeadBtn.textContent = "Enviando..."; }
         
-        const name = nameInput ? nameInput.value : null; // Pega o nome
+        const name = nameInput ? nameInput.value : null; 
         const email = emailInput ? emailInput.value : null;
         
-        if (!name || !email) { // Verifica ambos
+        if (!name || !email) { 
             console.error("ERRO: Nome ou E-mail não preenchido(s)."); 
             if (submitLeadBtn) { submitLeadBtn.disabled = false; submitLeadBtn.textContent = "Ver Meu Resultado"; } 
-            // Adicionar feedback visual para o usuário aqui, se desejar
             alert("Por favor, preencha seu nome e e-mail.");
             return; 
         }
         
-        // Adiciona 'nome' ao dataToSend
         const dataToSend = { 
-            "nome": name, // <<< NOVO
+            "nome": name, 
             "e-mail": email, 
             "conceito": finalConcept.level, "scoreTotal": finalConcept.totalScore, "scoreClareza": pillarScores.clareza, "scorePostura": pillarScores.postura, "scoreVoz": pillarScores.voz, "scoreVicios": pillarScores.vicios, "scoreStorytelling": pillarScores.storytelling, "scoreEscuta": pillarScores.escuta, "scoreSintese": pillarScores.sintese 
         };
